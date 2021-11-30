@@ -12,6 +12,7 @@ namespace gnLib {
 		static Matrix4x4 identity();
 
 	public:
+		Matrix4x4();
 		Matrix4x4(const Matrix4x4& _mat);
 		Matrix4x4(
 			float _m00, float _m01, float _m02, float _m03,
@@ -42,10 +43,16 @@ namespace gnLib {
 		const friend Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat);
 
 	public:
-		float m00, m01, m02, m03;
-		float m10, m11, m12, m13;
-		float m20, m21, m22, m23;
-		float m30, m31, m32, m33;
+		union {
+			struct {
+				float m00, m01, m02, m03;
+				float m10, m11, m12, m13;
+				float m20, m21, m22, m23;
+				float m30, m31, m32, m33;
+			};
+
+			float m[4][4];
+		};
 	};
 
 	Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat);

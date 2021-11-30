@@ -24,33 +24,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Math\Matrix\Matrix4x3.h">
+    <ClInclude Include="Math\include\Matrix\Matrix4x3.h">
       <Filter>Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Matrix\Matrix4x4.h">
+    <ClInclude Include="Math\include\Matrix\Matrix4x4.h">
       <Filter>Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Quaternion\Quaternion.h">
+    <ClInclude Include="Math\include\Quaternion\Quaternion.h">
       <Filter>Quaternion</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Vector\Vector2.h">
+    <ClInclude Include="Math\include\Vector\Vector2.h">
       <Filter>Vector</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Vector\Vector3.h">
+    <ClInclude Include="Math\include\Vector\Vector3.h">
       <Filter>Vector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Math\Matrix\Matrix4x4.cpp">
+    <ClCompile Include="Math\src\Matrix\Matrix4x4.cpp">
       <Filter>Matrix</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Quaternion\Quaternion.cpp">
+    <ClCompile Include="Math\src\Quaternion\Quaternion.cpp">
       <Filter>Quaternion</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Vector\Vector2.cpp">
+    <ClCompile Include="Math\src\Vector\Vector2.cpp">
       <Filter>Vector</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Vector\Vector3.cpp">
+    <ClCompile Include="Math\src\Vector\Vector3.cpp">
       <Filter>Vector</Filter>
     </ClCompile>
     <ClCompile Include="MathLib.cpp">

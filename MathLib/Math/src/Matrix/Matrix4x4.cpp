@@ -1,4 +1,4 @@
-#include "Matrix4x4.h"
+#include "../../include/Matrix/Matrix4x4.h"
 #include <string>
 #include <cmath>
 #include <iostream>
@@ -39,6 +39,14 @@ namespace gnLib {
         );
     }
 
+    Matrix4x4::Matrix4x4()
+        : m00(0.0f), m01(0.0f), m02(0.0f), m03(0.0f)
+        , m10(0.0f), m11(0.0f), m12(0.0f), m13(0.0f)
+        , m20(0.0f), m21(0.0f), m22(0.0f), m23(0.0f)
+        , m30(0.0f), m31(0.0f), m32(0.0f), m33(0.0f)
+    {
+    }
+
     Matrix4x4::Matrix4x4(const Matrix4x4& _mat)
         : m00(_mat.m00), m01(_mat.m01), m02(_mat.m02), m03(_mat.m03)
         , m10(_mat.m10), m11(_mat.m11), m12(_mat.m12), m13(_mat.m13)
@@ -67,8 +75,8 @@ namespace gnLib {
         , m30(_mat[12]), m31(_mat[13]), m32(_mat[14]), m33(_mat[15])
     {
     }
-
-                        const float Matrix4x4::determinant()
+    
+    const float Matrix4x4::determinant()
     {
         float a0{ m00 * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
         float a1{ m10 * determinant3x3(m01, m02, m03, m21, m22, m23, m31, m32, m33) };
@@ -132,11 +140,12 @@ namespace gnLib {
 
     const std::string Matrix4x4::toString()
     {
-        return
+        return {
             "[ m00 = " + tostr(m00) + ", m01 = " + tostr(m01) + ", m02 = " + tostr(m02) + ", m03 =  " + tostr(m03) + " ]\n"
             "[ m10 = " + tostr(m10) + ", m11 = " + tostr(m11) + ", m12 = " + tostr(m12) + ", m13 =  " + tostr(m13) + " ]\n"
             "[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + ", m23 =  " + tostr(m23) + " ]\n"
-            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 =  " + tostr(m33) + " ]\n";
+            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 =  " + tostr(m33) + " ]\n"
+        };
     }
 
     const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat)

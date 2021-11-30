@@ -1,4 +1,4 @@
-#include "Quaternion.h"
+#include "../../include/Quaternion/Quaternion.h"
 
 #define tostr(value) std::to_string(value)
 
