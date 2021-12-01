@@ -134,6 +134,20 @@ void Test_Matrix4x3_Constractor() {
     cout << m4.toString() << endl;
 }
 
+// Matrix4x3の転置行列のテスト
+void Test_Matrix4x3_Transpose() {
+    Matrix4x3 m{
+        1, 1, 1,
+        2, 2, 2,
+        3, 3, 3,
+        4, 4, 4
+    };
+
+    cout << m.toString() << endl;
+    m.transpose();
+    cout << m.toString() << endl;
+}
+
 int main()
 {
     // Test_ClassSize();
@@ -142,5 +156,6 @@ int main()
     // Test_Matrix4x4_Inverse();
     // Test_Matrix4x4_Operater();
 
-    Test_Matrix4x3_Constractor();
+    // Test_Matrix4x3_Constractor();
+    Test_Matrix4x3_Transpose();
 }

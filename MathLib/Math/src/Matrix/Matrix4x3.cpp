@@ -60,8 +60,15 @@ namespace gnLib {
 	{
 	}
 
+	// ˆê”Ô‰º‚Ì—ñ(m30, m31, m32)‚Í0.0f‚ð‘ã“ü‚·‚é
 	void Matrix4x3::transpose()
 	{
+		std::swap(m01, m10);
+		std::swap(m02, m20);
+		std::swap(m12, m21);
+		m30 = 0.0f;
+		m31 = 0.0f;
+		m32 = 0.0f;
 	}
 
 	const Matrix4x3 Matrix4x3::operator+(const Matrix4x3& _mat) const
@@ -80,6 +87,11 @@ namespace gnLib {
 	}
 
 	const Matrix4x3 Matrix4x3::operator*(float _scalar) const
+	{
+		return Matrix4x3();
+	}
+
+	const Matrix4x3 operator*(float _scalar, const Matrix4x3& _mat)
 	{
 		return Matrix4x3();
 	}
@@ -117,11 +129,6 @@ namespace gnLib {
 			"[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + " ]\n"
 			"[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + " ]\n"
 		};
-	}
-
-	const Matrix4x3 operator*(float _scalar, const Matrix4x3& _mat)
-	{
-		return Matrix4x3();
 	}
 
 }
