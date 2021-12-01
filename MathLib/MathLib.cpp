@@ -105,6 +105,35 @@ void Test_Matrix4x4_Operater() {
     // cout << "mx3 != mx4 = " << std::boolalpha << (mx3 != mx4) << endl;
 }
 
+// Matrix4x3のコンストラクタのテスト
+void Test_Matrix4x3_Constractor() {
+    auto mi = Matrix4x3::identity();
+    cout << mi.toString() << endl;
+
+    Matrix4x3 m1 {};
+    cout << m1.toString() << endl;
+
+    Matrix4x3 m2 {
+        1, 1, 1,
+        2, 2, 2,
+        3, 3, 3,
+        4, 4, 4
+    };
+    cout << m2.toString() << endl;
+
+    Matrix4x3 m3{ m2 };
+    cout << m3.toString() << endl;
+
+    float fm[12]{
+        5, 5, 5,
+        6, 6, 6,
+        7, 7, 7,
+        8, 8, 8
+    };
+    Matrix4x3 m4{ fm };
+    cout << m4.toString() << endl;
+}
+
 int main()
 {
     // Test_ClassSize();
@@ -113,4 +142,5 @@ int main()
     // Test_Matrix4x4_Inverse();
     // Test_Matrix4x4_Operater();
 
+    Test_Matrix4x3_Constractor();
 }

@@ -18,7 +18,7 @@ namespace gnLib {
 			float _m20, float _m21, float _m22,
 			float _m30, float _m31, float _m32
 		);
-		Matrix4x3(float _mat[12]);
+		Matrix4x3(const float _mat[12]);
 		~Matrix4x3() = default;;
 
 		// s—ñ®
