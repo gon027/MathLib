@@ -144,7 +144,7 @@ namespace gnLib {
         };
     }
 
-    const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat)
+    const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat) const
     {
         return Matrix4x4(
             m00 + _mat.m00, m01 + _mat.m01, m02 + _mat.m02, m03 + _mat.m03,
@@ -154,7 +154,7 @@ namespace gnLib {
         );
     }
 
-    const Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _mat)
+    const Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _mat) const
     {
         return Matrix4x4(
             m00 - _mat.m00, m01 - _mat.m01, m02 - _mat.m02, m03 - _mat.m03,
@@ -164,7 +164,7 @@ namespace gnLib {
         );
     }
 
-    const Matrix4x4 Matrix4x4::operator*(const Matrix4x4& _mat)
+    const Matrix4x4 Matrix4x4::operator*(const Matrix4x4& _mat) const
     {
         const float nm00{ m00 * _mat.m00 + m01 * _mat.m10 + m02 * _mat.m20 + m03 * _mat.m30 };
         const float nm01{ m00 * _mat.m01 + m01 * _mat.m11 + m02 * _mat.m21 + m03 * _mat.m31 };
@@ -194,7 +194,7 @@ namespace gnLib {
         );
     }
 
-    const Matrix4x4 Matrix4x4::operator*(float _scalar)
+    const Matrix4x4 Matrix4x4::operator*(float _scalar) const
     {
         return {
             m00 * _scalar, m01 * _scalar, m02 * _scalar, m03 * _scalar,
@@ -229,21 +229,21 @@ namespace gnLib {
         };
     }
 
-    Matrix4x4& operator+=(Matrix4x4& _m, const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _mat)
     {
-        _m = _m + _mat;
-        return _m;
+        *this = *this + _mat;
+        return *this;
     }
 
-    Matrix4x4& operator-=(Matrix4x4& _m, const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& _mat)
     {
-        _m = _m - _mat;
-        return _m;
+        *this = *this - _mat;
+        return *this;
     }
 
-    Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _mat)
     {
-        _m = _m * _mat;
-        return _m;
+        *this = *this * _mat;
+        return *this;
     }
 }

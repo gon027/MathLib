@@ -72,17 +72,17 @@ void Test_Matrix4x4_Operater() {
     auto op3_1 = mx1 * mx2;
     cout << op3_1.toString() << endl;
 
-    cout << "op3_2" << endl;
-    auto op3_2 = mx2 * mx1;
-    cout << op3_2.toString() << endl;
-
-    cout << "op4" << endl;
-    auto op4 = mx1 * 2.0f;
-    cout << op4.toString() << endl;
-
-    cout << "op5" << endl;
-    auto op5 = 2.0f * mx1;
-    cout << op5.toString() << endl;
+    // cout << "op3_2" << endl;
+    // auto op3_2 = mx2 * mx1;
+    // cout << op3_2.toString() << endl;
+    // 
+    // cout << "op4" << endl;
+    // auto op4 = mx1 * 2.0f;
+    // cout << op4.toString() << endl;
+    // 
+    // cout << "op5" << endl;
+    // auto op5 = 2.0f * mx1;
+    // cout << op5.toString() << endl;
 
     // cout << "mx1 +=" << endl;
     // mx1 += mx2;
@@ -92,27 +92,25 @@ void Test_Matrix4x4_Operater() {
     // mx1 -= mx2;
     // cout << mx1.toString() << endl; // op2と同じになる
     
-    // cout << "mx1 +=" << endl;
-    // mx1 *= mx2;
-    // cout << mx1.toString() << endl; // op3_1と同じになる
+    cout << "mx1 +=" << endl;
+    mx1 *= mx2;
+    cout << mx1.toString() << endl; // op3_1と同じになる
 
-    auto mx3 = Matrix4x4::identity();
-    auto mx4 = Matrix4x4::identity();
-    cout << "mx1 == mx2 = " << std::boolalpha << (mx1 == mx2) << endl;
-    cout << "mx1 != mx2 = " << std::boolalpha << (mx1 != mx2) << endl;
-
-    cout << "mx3 == mx4 = " << std::boolalpha << (mx3 == mx4) << endl;
-    cout << "mx3 != mx4 = " << std::boolalpha << (mx3 != mx4) << endl;
+    // auto mx3 = Matrix4x4::identity();
+    // auto mx4 = Matrix4x4::identity();
+    // cout << "mx1 == mx2 = " << std::boolalpha << (mx1 == mx2) << endl;
+    // cout << "mx1 != mx2 = " << std::boolalpha << (mx1 != mx2) << endl;
+    // 
+    // cout << "mx3 == mx4 = " << std::boolalpha << (mx3 == mx4) << endl;
+    // cout << "mx3 != mx4 = " << std::boolalpha << (mx3 != mx4) << endl;
 }
 
 int main()
 {
-    Test_ClassSize();
+    // Test_ClassSize();
 
-    Test_Matrix4x4_Transpose();
-
-    Test_Matrix4x4_Inverse();
-
-    Test_Matrix4x4_Operater();
+    // Test_Matrix4x4_Transpose();
+    // Test_Matrix4x4_Inverse();
+    // Test_Matrix4x4_Operater();
 
 }

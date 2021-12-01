@@ -8,11 +8,7 @@ namespace gnLib {
 
 	// 3次元ベクトルクラス
 	class Vector3 {
-	public:
-		float x;
-		float y;
-		float z;
-
+	public :
 		static Vector3 Up;
 		static Vector3 Down;
 		static Vector3 Left;
@@ -21,6 +17,11 @@ namespace gnLib {
 		static Vector3 Forward;
 		static Vector3 One;
 		static Vector3 Zero;
+
+	public:
+		float x;
+		float y;
+		float z;
 
 		Vector3();
 		Vector3(const Vector2& _vector);

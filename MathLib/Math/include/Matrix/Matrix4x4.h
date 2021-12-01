@@ -5,8 +5,6 @@
 
 namespace gnLib {
 
-	class Vector3;
-
 	class Matrix4x4 {
 	public:
 		static Matrix4x4 identity();
@@ -32,20 +30,26 @@ namespace gnLib {
 		// ì]íuçsóÒ
 		void transpose();
 
-		const std::string toString();
-
 		// operator
-		const Matrix4x4 operator+(const Matrix4x4& _mat);
+		const Matrix4x4 operator+(const Matrix4x4& _mat) const;
 
-		const Matrix4x4 operator-(const Matrix4x4& _mat);
+		const Matrix4x4 operator-(const Matrix4x4& _mat) const;
 
-		const Matrix4x4 operator*(const Matrix4x4& _mat);
-		const Matrix4x4 operator*(float _scalar);
+		const Matrix4x4 operator*(const Matrix4x4& _mat) const;
+		const Matrix4x4 operator*(float _scalar) const;
 		const friend Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat);
+
+		const Matrix4x4& operator+=(const Matrix4x4& _mat);
+
+		const Matrix4x4& operator-=(const Matrix4x4& _mat);
+
+		const Matrix4x4& operator*=(const Matrix4x4& _mat);
 
 		const bool operator==(const Matrix4x4& _rm) const;
 
 		const bool operator!=(const Matrix4x4& _rm) const;
+
+		const std::string toString();
 
 	public:
 		union {
@@ -60,11 +64,6 @@ namespace gnLib {
 		};
 	};
 
-	Matrix4x4& operator+=(Matrix4x4& _m, const Matrix4x4& _mat);
-
-	Matrix4x4& operator-=(Matrix4x4& _m, const Matrix4x4& _mat);
-
-	Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat);
 }
 
 #endif // !MATRIX4X4_H

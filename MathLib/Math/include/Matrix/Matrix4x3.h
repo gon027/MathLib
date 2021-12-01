@@ -1,6 +1,8 @@
 #ifndef MATRIX4X3_H
 #define MATRIX4X3_H
 
+#include <string>
+
 namespace gnLib {
 
 	struct Matrix4x3 {
@@ -8,6 +10,7 @@ namespace gnLib {
 		static Matrix4x3 identity();
 
 	public:
+		Matrix4x3();
 		Matrix4x3(const Matrix4x3& _mat);
 		Matrix4x3(
 			float _m00, float _m01, float _m02,
@@ -15,8 +18,38 @@ namespace gnLib {
 			float _m20, float _m21, float _m22,
 			float _m30, float _m31, float _m32
 		);
-		Matrix4x3(float _mat[16]);
+		Matrix4x3(float _mat[12]);
 		~Matrix4x3() = default;;
+
+		// 行列式
+		float determinant();
+
+		// 逆行列
+		void inverse();
+
+		// 転置行列
+		void transpose();
+
+		// operator
+		const Matrix4x3 operator+(const Matrix4x3& _mat) const;
+
+		const Matrix4x3 operator-(const Matrix4x3& _mat) const;
+
+		const Matrix4x3 operator*(const Matrix4x3& _mat) const;
+		const Matrix4x3 operator*(float _scalar) const;
+		const friend Matrix4x3 operator*(float _scalar, const Matrix4x3& _mat);
+
+		const Matrix4x3& operator+=(const Matrix4x3& _mat);
+
+		const Matrix4x3& operator-=(const Matrix4x3& _mat);
+
+		const Matrix4x3& operator*=(const Matrix4x3& _mat);
+
+		const bool operator==(const Matrix4x3& _rm) const;
+
+		const bool operator!=(const Matrix4x3& _rm) const;
+
+		const std::string toString();
 
 	public:
 		union {
