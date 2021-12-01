@@ -24,23 +24,28 @@ namespace gnLib {
 		~Matrix4x4() = default;
 
 		// 行列式
-		const float determinant();
+		float determinant();
 
 		// 逆行列
-		const Matrix4x4 inverse();
+		void inverse();
 
 		// 転置行列
-		const Matrix4x4 transpose();
+		void transpose();
 
 		const std::string toString();
 
 		// operator
 		const Matrix4x4 operator+(const Matrix4x4& _mat);
+
 		const Matrix4x4 operator-(const Matrix4x4& _mat);
 
 		const Matrix4x4 operator*(const Matrix4x4& _mat);
 		const Matrix4x4 operator*(float _scalar);
 		const friend Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat);
+
+		const bool operator==(const Matrix4x4& _rm) const;
+
+		const bool operator!=(const Matrix4x4& _rm) const;
 
 	public:
 		union {
@@ -55,8 +60,11 @@ namespace gnLib {
 		};
 	};
 
-	Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat);
+	Matrix4x4& operator+=(Matrix4x4& _m, const Matrix4x4& _mat);
 
+	Matrix4x4& operator-=(Matrix4x4& _m, const Matrix4x4& _mat);
+
+	Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat);
 }
 
 #endif // !MATRIX4X4_H

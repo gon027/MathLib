@@ -76,7 +76,7 @@ namespace gnLib {
     {
     }
     
-    const float Matrix4x4::determinant()
+    float Matrix4x4::determinant()
     {
         float a0{ m00 * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
         float a1{ m10 * determinant3x3(m01, m02, m03, m21, m22, m23, m31, m32, m33) };
@@ -86,13 +86,13 @@ namespace gnLib {
         return a0 - a1 + a2 - a3;
     }
 
-    const Matrix4x4 Matrix4x4::inverse()
+    void Matrix4x4::inverse()
     {
         const float det = determinant();
 
         // 行列式が0の時、逆行列ではなく元の行列を返す
         if (std::abs(det) < 0.00001f) {
-            return { *this };
+            return;
         }
 
         const float inv = 1 / det;
@@ -118,24 +118,20 @@ namespace gnLib {
         const float n23{ -inv * determinant3x3(m00, m01, m03, m10, m11, m13, m20, m21, m23) };
         const float n33{ inv * determinant3x3(m00, m01, m02, m10, m11, m12, m20, m21, m22) };
 
-        
-        return {
-            n00, n01, n02, n03,
-            n10, n11, n12, n13,
-            n20, n21, n22, n23,
-            n30, n31, n32, n33
-        };
-        
+        m00 = n00; m01 = n01; m02 = n02; m03 = n03;
+        m10 = n10; m11 = n11; m12 = n12; m13 = n13;
+        m20 = n20; m21 = n21; m22 = n22; m23 = n23;
+        m30 = n30; m31 = n31; m32 = n32; m33 = n33;
     }
 
-    const Matrix4x4 Matrix4x4::transpose()
+    void Matrix4x4::transpose()
     {
-        return {
-            m00, m10, m20, m30,
-            m01, m11, m21, m31,
-            m02, m12, m22, m32,
-            m03, m13, m23, m33
-        };
+        std::swap(m01, m10);
+        std::swap(m02, m20);
+        std::swap(m03, m30);
+        std::swap(m13, m31);
+        std::swap(m12, m21);
+        std::swap(m23, m32);
     }
 
     const std::string Matrix4x4::toString()
@@ -208,6 +204,21 @@ namespace gnLib {
         };
     }
 
+    const bool Matrix4x4::operator==(const Matrix4x4& _rm) const
+    {
+        return {
+            m00 == _rm.m00 && m01 == _rm.m01 && m02 == _rm.m02 && m03 == _rm.m03 &&
+            m10 == _rm.m10 && m11 == _rm.m11 && m12 == _rm.m12 && m13 == _rm.m13 &&
+            m20 == _rm.m20 && m21 == _rm.m21 && m22 == _rm.m22 && m23 == _rm.m23 &&
+            m30 == _rm.m30 && m31 == _rm.m31 && m32 == _rm.m32 && m33 == _rm.m33
+        };
+    }
+
+    const bool Matrix4x4::operator!=(const Matrix4x4& _rm) const
+    {
+        return !(*this == _rm);
+    }
+
     const Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat)
     {
         return {
@@ -216,6 +227,18 @@ namespace gnLib {
            _scalar* _mat.m20, _scalar * _mat.m21, _scalar * _mat.m22, _scalar * _mat.m23,
            _scalar* _mat.m30, _scalar * _mat.m31, _scalar * _mat.m32, _scalar * _mat.m33
         };
+    }
+
+    Matrix4x4& operator+=(Matrix4x4& _m, const Matrix4x4& _mat)
+    {
+        _m = _m + _mat;
+        return _m;
+    }
+
+    Matrix4x4& operator-=(Matrix4x4& _m, const Matrix4x4& _mat)
+    {
+        _m = _m - _mat;
+        return _m;
     }
 
     Matrix4x4& operator*=(Matrix4x4& _m, const Matrix4x4& _mat)

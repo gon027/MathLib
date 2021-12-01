@@ -19,10 +19,16 @@ namespace gnLib {
 		~Matrix4x3() = default;;
 
 	public:
-		float m00, m01, m02;
-		float m10, m11, m12;
-		float m20, m21, m22;
-		float m30, m31, m32;
+		union {
+			struct {
+				float m00, m01, m02;
+				float m10, m11, m12;
+				float m20, m21, m22;
+				float m30, m31, m32;
+			};
+
+			float m[4][3];
+		};
 	};
 
 }

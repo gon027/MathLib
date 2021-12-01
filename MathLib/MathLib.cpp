@@ -17,83 +17,102 @@ void Test_ClassSize() {
     cout << endl;
 }
 
+// 転置行列のテスト
+void Test_Matrix4x4_Transpose() {
+    auto m = Matrix4x4{
+       12.0f, 32.0f, 22.0f, 12.0f,
+       20.0f, 93.0f, 57.0f, 17.0f,
+       64.0f, 14.0f, 50.0f, 23.0f,
+       71.0f, 77.0f, 14.0f, 11.0f
+    };
+
+    m.transpose();
+    cout << m.toString() << endl;
+}
+
+// 逆行列のテスト
+void Test_Matrix4x4_Inverse() {
+    auto m = Matrix4x4{
+        3.0f, 1.0f, 1.0f, 2.0f,
+        5.0f, 1.0f, 3.0f, 4.0f,
+        2.0f, 0.0f, 1.0f, 0.0f,
+        1.0f, 3.0f, 2.0f, 1.0f
+    };
+
+    m.inverse();
+    cout << "determinant = " << m.determinant() << endl;
+    cout << m.toString() << endl;
+}
+
+// 行列の四則演算のテスト
+void Test_Matrix4x4_Operater() {
+    auto mx1 = Matrix4x4{
+        2.0f, 3.0f, 6.0f, 2.0f,
+        1.0f, 4.0f, 3.0f, 1.0f,
+        2.0f, 1.0f, 5.0f, 5.0f,
+        1.0f, 3.0f, 5.0f, 3.0f
+    };
+    
+    auto mx2 = Matrix4x4{
+        3, 1, 2, 2,
+        5, 3, 3, 3,
+        1, 2, 1, 5,
+        3, 3, 4, 5
+    };
+
+    cout << "op1" << endl;
+    auto op1 = mx1 + mx2;
+    cout << op1.toString() << endl;
+
+    cout << "op2" << endl;
+    auto op2 = mx1 - mx2;
+    cout << op2.toString() << endl;
+
+    cout << "op3_1" << endl;
+    auto op3_1 = mx1 * mx2;
+    cout << op3_1.toString() << endl;
+
+    cout << "op3_2" << endl;
+    auto op3_2 = mx2 * mx1;
+    cout << op3_2.toString() << endl;
+
+    cout << "op4" << endl;
+    auto op4 = mx1 * 2.0f;
+    cout << op4.toString() << endl;
+
+    cout << "op5" << endl;
+    auto op5 = 2.0f * mx1;
+    cout << op5.toString() << endl;
+
+    // cout << "mx1 +=" << endl;
+    // mx1 += mx2;
+    // cout << mx1.toString() << endl; // op1と同じになる
+
+    // cout << "mx1 -=" << endl;
+    // mx1 -= mx2;
+    // cout << mx1.toString() << endl; // op2と同じになる
+    
+    // cout << "mx1 +=" << endl;
+    // mx1 *= mx2;
+    // cout << mx1.toString() << endl; // op3_1と同じになる
+
+    auto mx3 = Matrix4x4::identity();
+    auto mx4 = Matrix4x4::identity();
+    cout << "mx1 == mx2 = " << std::boolalpha << (mx1 == mx2) << endl;
+    cout << "mx1 != mx2 = " << std::boolalpha << (mx1 != mx2) << endl;
+
+    cout << "mx3 == mx4 = " << std::boolalpha << (mx3 == mx4) << endl;
+    cout << "mx3 != mx4 = " << std::boolalpha << (mx3 != mx4) << endl;
+}
+
 int main()
 {
     Test_ClassSize();
 
-    // Matrix4x4 m = Matrix4x4::identity();
-    auto m = Matrix4x4{
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f
-    };
-    cout << m.toString() << endl;
-    cout << m.m[0][0] << endl;
-    cout << m.m[1][1] << endl;
-    cout << m.m[2][2] << endl;
-    cout << m.m[3][3] << endl;
+    Test_Matrix4x4_Transpose();
 
-    /*
-    auto m = Matrix4x4{
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f,
-        1.0f, 2.0f, 3.0f, 4.0f
-    };
-    cout << m.toString() << endl;
+    Test_Matrix4x4_Inverse();
 
-    cout << endl;
+    Test_Matrix4x4_Operater();
 
-    Matrix4x4 n {
-        12.0f, 32.0f, 43.0f, 12.0f,
-        32.0f, 43.0f, 5.0f, 17.0f,
-        74.0f, 3.0f, 5.0f, 123.0f,
-        54.0f, 6.0f, 14.0f, 1.0f
-    };
-    auto nm = n * m;
-
-    cout << nm.toString() << endl;
-
-    Quaternion q = Quaternion::identity();
-    cout << q.toString() << endl;
-    */
-
-    /*
-    auto a = Matrix4x4::identity();
-    auto b = Matrix4x4::identity();
-    auto c = a * b;
-    */
-
-    // float d[16]{
-    //     3, 1, 1, 2,
-    //     5, 1, 3, 4,
-    //     2, 0, 1, 0,
-    //     1, 3, 2, 1
-    // };
-    // 
-    // auto e = Matrix4x4{ d };
-    // cout << e.toString() << endl;
-    // 
-    // auto x{ e.inverse() };
-    // cout << x.toString() << endl;
-    // 
-    // e *= x;
-    // cout << e.toString() << endl;
-    // 
-    // cout << "inv = " << e.determinant() << endl;
-
-    /*
-    auto te{ e.transpose() };
-    cout << te.toString() << endl;
-
-    /*
-    auto f = e.determinant();
-    cout << f << endl;
-    cout << (1 / f) << endl;
-    */
-
-   
-
-    while (true);
 }
