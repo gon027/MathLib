@@ -4,6 +4,17 @@
 
 namespace gnLib {
 
+	namespace {
+
+		float determinant2x2(
+			float _m00, float _m01, 
+			float _m10, float _m11) 
+		{
+			return (_m00 * _m11) - (_m01 * _m10);
+		}
+
+	}
+
 	Matrix4x3 Matrix4x3::identity()
 	{
 		return {
@@ -51,13 +62,46 @@ namespace gnLib {
 	{
 	}
 
+	// 3x3‚Ìs—ñ®‚ğŒvZ‚·‚é
 	float Matrix4x3::determinant()
 	{
-		return 0.0f;
+		const float n00{ m00 * determinant2x2(m11, m12, m21, m22) };
+		const float n01{ m01 * determinant2x2(m10, m12, m20, m22) };
+		const float n02{ m02 * determinant2x2(m10, m11, m20, m21) };
+
+		return n00 - n01 + n02;
 	}
 
 	void Matrix4x3::inverse()
 	{
+		const float det = determinant();
+
+		if (std::abs(det) < 0.00001f) {
+			return;
+		}
+
+		const float inv = 1.0f / det;
+
+		const float n00{ inv * determinant2x2(m11, m12, m21, m22) };
+		const float n10{ -inv * determinant2x2(m10, m12, m20, m22) };
+		const float n20{ inv * determinant2x2(m10, m11, m20, m21) };
+		
+		const float n01{ -inv * determinant2x2(m01, m02, m21, m22) };
+		const float n11{ inv * determinant2x2(m00, m02, m20, m22) };
+		const float n21{ -inv * determinant2x2(m00, m01, m20, m21) };
+
+		const float n02{ inv * determinant2x2(m01, m02, m11, m12) };
+		const float n12{ -inv * determinant2x2(m00, m02, m10, m12) };
+		const float n22{ inv * determinant2x2(m00, m01, m10, m11) };
+
+		const float n30{ -(m30 * n00 + m31 * n10 + m32 * n20) };
+		const float n31{ -(m30 * n01 + m31 * n11 + m32 * n21) };
+		const float n32{ -(m30 * n02 + m31 * n12 + m32 * n22) };
+
+		m00 = n00; m01 = n01; m02 = n02;
+		m10 = n10; m11 = n11; m12 = n12;
+		m20 = n20; m21 = n21; m22 = n22;
+		m30 = n30; m31 = n31; m32 = n32;
 	}
 
 	// ˆê”Ô‰º‚Ì—ñ(m30, m31, m32)‚Í0.0f‚ğ‘ã“ü‚·‚é
@@ -73,52 +117,81 @@ namespace gnLib {
 
 	const Matrix4x3 Matrix4x3::operator+(const Matrix4x3& _mat) const
 	{
-		return Matrix4x3();
+		return {
+			m00 + _mat.m00, m01 + _mat.m01, m02 + _mat.m02,
+			m10 + _mat.m10, m11 + _mat.m11, m12 + _mat.m12,
+			m20 + _mat.m20, m21 + _mat.m21, m22 + _mat.m22,
+			m30 + _mat.m30, m31 + _mat.m31, m32 + _mat.m32,
+		};
 	}
 
 	const Matrix4x3 Matrix4x3::operator-(const Matrix4x3& _mat) const
 	{
-		return Matrix4x3();
+		return {
+			m00 - _mat.m00, m01 - _mat.m01, m02 - _mat.m02,
+			m10 - _mat.m10, m11 - _mat.m11, m12 - _mat.m12,
+			m20 - _mat.m20, m21 - _mat.m21, m22 - _mat.m22,
+			m30 - _mat.m30, m31 - _mat.m31, m32 - _mat.m32,
+		};
 	}
 
 	const Matrix4x3 Matrix4x3::operator*(const Matrix4x3& _mat) const
 	{
-		return Matrix4x3();
+		return {
+		};
 	}
 
 	const Matrix4x3 Matrix4x3::operator*(float _scalar) const
 	{
-		return Matrix4x3();
+		return {
+			m00 * _scalar, m01 * _scalar, m02 * _scalar,
+			m10 * _scalar, m11 * _scalar, m12 * _scalar,
+			m20 * _scalar, m21 * _scalar, m22 * _scalar,
+			m30 * _scalar, m31 * _scalar, m32 * _scalar,
+		};
 	}
 
 	const Matrix4x3 operator*(float _scalar, const Matrix4x3& _mat)
 	{
-		return Matrix4x3();
+		return {
+		   _scalar * _mat.m00, _scalar * _mat.m01, _scalar * _mat.m02,
+		   _scalar * _mat.m10, _scalar * _mat.m11, _scalar * _mat.m12,
+		   _scalar * _mat.m20, _scalar * _mat.m21, _scalar * _mat.m22,
+		   _scalar * _mat.m30, _scalar * _mat.m31, _scalar * _mat.m32,
+		};
 	}
 
 	const Matrix4x3& Matrix4x3::operator+=(const Matrix4x3& _mat)
 	{
+		*this = *this + _mat;
 		return *this;
 	}
 
 	const Matrix4x3& Matrix4x3::operator-=(const Matrix4x3& _mat)
 	{
+		*this = *this - _mat;
 		return *this;
 	}
 
 	const Matrix4x3& Matrix4x3::operator*=(const Matrix4x3& _mat)
 	{
+		*this = *this * _mat;
 		return *this;
 	}
 
 	const bool Matrix4x3::operator==(const Matrix4x3& _rm) const
 	{
-		return false;
+		return {
+		   m00 == _rm.m00 && m01 == _rm.m01 && m02 == _rm.m02 &&
+		   m10 == _rm.m10 && m11 == _rm.m11 && m12 == _rm.m12 &&
+		   m20 == _rm.m20 && m21 == _rm.m21 && m22 == _rm.m22 &&
+		   m30 == _rm.m30 && m31 == _rm.m31 && m32 == _rm.m32 
+		};
 	}
 
 	const bool Matrix4x3::operator!=(const Matrix4x3& _rm) const
 	{
-		return false;
+		return !(*this == _rm);
 	}
 
 	const std::string Matrix4x3::toString()

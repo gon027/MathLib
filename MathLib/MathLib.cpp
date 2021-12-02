@@ -148,6 +148,79 @@ void Test_Matrix4x3_Transpose() {
     cout << m.toString() << endl;
 }
 
+void Test_Matrix4x3_Operater() {
+    Matrix4x3 mx1{
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9,
+        10, 11, 12
+    };
+
+    Matrix4x3 mx2{
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+        1, 2, 3,
+    };
+
+    auto mx3 = Matrix4x3::identity();
+    auto mx4 = Matrix4x3::identity();
+
+    cout << "mx1 + mx2" << endl;
+    auto res1 = mx1 + mx2;
+    cout << res1.toString() << endl;
+
+    cout << "mx1 - mx2" << endl;
+    auto res2 = mx1 - mx2;
+    cout << res2.toString() << endl;
+
+    // cout << "mx1 += mx2" << endl;
+    // mx1 += mx2;
+    // cout << mx1.toString() << endl;
+
+    // cout << "mx1 -= mx2" << endl;
+    // mx1 -= mx2;
+    // cout << mx1.toString() << endl;
+
+    cout << "mx1 == mx2" << endl;
+    cout << std::boolalpha << (mx1 == mx2) << endl;
+
+    cout << "mx1 != mx2" << endl;
+    cout << std::boolalpha << (mx1 != mx2) << endl;
+
+    cout << "mx3 == mx4" << endl;
+    cout << std::boolalpha << (mx3 == mx4) << endl;
+
+    cout << "mx3 != mx4" << endl;
+    cout << std::boolalpha << (mx3 != mx4) << endl;
+}
+
+void Test_Matrix4x3_Determinant() {
+    Matrix4x3 m{
+        1, 1, 1,
+        2, 2, 10,
+        3, 3, 3,
+        4, 4, 4
+    };
+
+    // 3x3の行列式が帰ってくる
+    // 1 * (6 - 30) + 2 * (3 - 3) + 3 * (2 - 2) = 24
+    cout << m.determinant() << endl;
+}
+
+void Test_Matrix4x3_Inverse() {
+    Matrix4x3 m{
+        8, 5, 7,
+        2, 2, 5,
+        3, 5, 9,
+        3, 4, 5
+    };
+
+    //cout << m.determinant() << endl;
+    m.inverse();
+    cout << m.toString() << endl;
+}
+
 int main()
 {
     // Test_ClassSize();
@@ -157,5 +230,8 @@ int main()
     // Test_Matrix4x4_Operater();
 
     // Test_Matrix4x3_Constractor();
-    Test_Matrix4x3_Transpose();
+    // Test_Matrix4x3_Transpose();
+    // Test_Matrix4x3_Operater();
+    // Test_Matrix4x3_Determinant();
+    Test_Matrix4x3_Inverse();
 }

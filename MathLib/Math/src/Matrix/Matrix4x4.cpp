@@ -59,7 +59,8 @@ namespace gnLib {
         float _m00, float _m01, float _m02, float _m03,
         float _m10, float _m11, float _m12, float _m13,
         float _m20, float _m21, float _m22, float _m23,
-        float _m30, float _m31, float _m32, float _m33)
+        float _m30, float _m31, float _m32, float _m33
+    )
         : m00(_m00), m01(_m01), m02(_m02), m03(_m03)
         , m10(_m10), m11(_m11), m12(_m12), m13(_m13)
         , m20(_m20), m21(_m21), m22(_m22), m23(_m23)
@@ -95,7 +96,7 @@ namespace gnLib {
             return;
         }
 
-        const float inv = 1 / det;
+        const float inv = 1.0f / det;
 
         // Še—]‰CŽq‚ðŒvŽZ
         const float n00{ inv * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
@@ -132,16 +133,6 @@ namespace gnLib {
         std::swap(m13, m31);
         std::swap(m12, m21);
         std::swap(m23, m32);
-    }
-
-    const std::string Matrix4x4::toString()
-    {
-        return {
-            "[ m00 = " + tostr(m00) + ", m01 = " + tostr(m01) + ", m02 = " + tostr(m02) + ", m03 =  " + tostr(m03) + " ]\n"
-            "[ m10 = " + tostr(m10) + ", m11 = " + tostr(m11) + ", m12 = " + tostr(m12) + ", m13 =  " + tostr(m13) + " ]\n"
-            "[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + ", m23 =  " + tostr(m23) + " ]\n"
-            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 =  " + tostr(m33) + " ]\n"
-        };
     }
 
     const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat) const
@@ -204,6 +195,16 @@ namespace gnLib {
         };
     }
 
+    const Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat)
+    {
+        return {
+           _scalar * _mat.m00, _scalar * _mat.m01, _scalar * _mat.m02, _scalar * _mat.m03,
+           _scalar * _mat.m10, _scalar * _mat.m11, _scalar * _mat.m12, _scalar * _mat.m13,
+           _scalar * _mat.m20, _scalar * _mat.m21, _scalar * _mat.m22, _scalar * _mat.m23,
+           _scalar * _mat.m30, _scalar * _mat.m31, _scalar * _mat.m32, _scalar * _mat.m33
+        };
+    }
+
     const bool Matrix4x4::operator==(const Matrix4x4& _rm) const
     {
         return {
@@ -217,16 +218,6 @@ namespace gnLib {
     const bool Matrix4x4::operator!=(const Matrix4x4& _rm) const
     {
         return !(*this == _rm);
-    }
-
-    const Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat)
-    {
-        return {
-           _scalar* _mat.m00, _scalar * _mat.m01, _scalar * _mat.m02, _scalar * _mat.m03,
-           _scalar* _mat.m10, _scalar * _mat.m11, _scalar * _mat.m12, _scalar * _mat.m13,
-           _scalar* _mat.m20, _scalar * _mat.m21, _scalar * _mat.m22, _scalar * _mat.m23,
-           _scalar* _mat.m30, _scalar * _mat.m31, _scalar * _mat.m32, _scalar * _mat.m33
-        };
     }
 
     const Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _mat)
@@ -246,4 +237,15 @@ namespace gnLib {
         *this = *this * _mat;
         return *this;
     }
+
+    const std::string Matrix4x4::toString()
+    {
+        return {
+            "[ m00 = " + tostr(m00) + ", m01 = " + tostr(m01) + ", m02 = " + tostr(m02) + ", m03 =  " + tostr(m03) + " ]\n"
+            "[ m10 = " + tostr(m10) + ", m11 = " + tostr(m11) + ", m12 = " + tostr(m12) + ", m13 =  " + tostr(m13) + " ]\n"
+            "[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + ", m23 =  " + tostr(m23) + " ]\n"
+            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 =  " + tostr(m33) + " ]\n"
+        };
+    }
+
 }
