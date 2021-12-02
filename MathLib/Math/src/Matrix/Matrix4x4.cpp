@@ -137,22 +137,22 @@ namespace gnLib {
 
     const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat) const
     {
-        return Matrix4x4(
+        return {
             m00 + _mat.m00, m01 + _mat.m01, m02 + _mat.m02, m03 + _mat.m03,
             m10 + _mat.m10, m11 + _mat.m11, m12 + _mat.m12, m13 + _mat.m13,
             m20 + _mat.m20, m21 + _mat.m21, m22 + _mat.m22, m23 + _mat.m23,
             m30 + _mat.m30, m31 + _mat.m31, m32 + _mat.m32, m33 + _mat.m33
-        );
+        };
     }
 
     const Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _mat) const
     {
-        return Matrix4x4(
+        return {
             m00 - _mat.m00, m01 - _mat.m01, m02 - _mat.m02, m03 - _mat.m03,
             m10 - _mat.m10, m11 - _mat.m11, m12 - _mat.m12, m13 - _mat.m13,
             m20 - _mat.m20, m21 - _mat.m21, m22 - _mat.m22, m23 - _mat.m23,
             m30 - _mat.m30, m31 - _mat.m31, m32 - _mat.m32, m33 - _mat.m33
-        );
+        };
     }
 
     const Matrix4x4 Matrix4x4::operator*(const Matrix4x4& _mat) const
@@ -177,12 +177,12 @@ namespace gnLib {
         const float nm32{ m30 * _mat.m02 + m31 * _mat.m12 + m32 * _mat.m22 + m33 * _mat.m32 };
         const float nm33{ m30 * _mat.m03 + m31 * _mat.m13 + m32 * _mat.m23 + m33 * _mat.m33 };
 
-        return Matrix4x4(
+        return {
             nm00, nm01, nm02, nm03,
             nm10, nm11, nm12, nm13,
             nm20, nm21, nm22, nm23,
             nm30, nm31, nm32, nm33
-        );
+        };
     }
 
     const Matrix4x4 Matrix4x4::operator*(float _scalar) const

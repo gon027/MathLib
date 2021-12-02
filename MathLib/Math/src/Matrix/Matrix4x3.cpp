@@ -137,7 +137,27 @@ namespace gnLib {
 
 	const Matrix4x3 Matrix4x3::operator*(const Matrix4x3& _mat) const
 	{
+		const float nm00{ m00 * _mat.m00 + m01 * _mat.m10 + m02 * _mat.m20 };
+		const float nm01{ m00 * _mat.m01 + m01 * _mat.m11 + m02 * _mat.m21 };
+		const float nm02{ m00 * _mat.m02 + m01 * _mat.m12 + m02 * _mat.m22 };
+
+		const float nm10{ m10 * _mat.m00 + m11 * _mat.m10 + m12 * _mat.m20 };
+		const float nm11{ m10 * _mat.m01 + m11 * _mat.m11 + m12 * _mat.m21 };
+		const float nm12{ m10 * _mat.m02 + m11 * _mat.m12 + m12 * _mat.m22 };
+
+		const float nm20{ m20 * _mat.m00 + m21 * _mat.m10 + m22 * _mat.m20 };
+		const float nm21{ m20 * _mat.m01 + m21 * _mat.m11 + m22 * _mat.m21 };
+		const float nm22{ m20 * _mat.m02 + m21 * _mat.m12 + m22 * _mat.m22 };
+
+		const float nm30{ m30 * _mat.m00 + m31 * _mat.m10 + m32 * _mat.m20 + _mat.m30 };
+		const float nm31{ m30 * _mat.m01 + m31 * _mat.m11 + m32 * _mat.m21 + _mat.m31 };
+		const float nm32{ m30 * _mat.m02 + m31 * _mat.m12 + m32 * _mat.m22 + _mat.m32 };
+
 		return {
+			nm00, nm01, nm02,
+			nm10, nm11, nm12,
+			nm20, nm21, nm22,
+			nm30, nm31, nm32,
 		};
 	}
 

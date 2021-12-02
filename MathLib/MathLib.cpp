@@ -148,6 +148,7 @@ void Test_Matrix4x3_Transpose() {
     cout << m.toString() << endl;
 }
 
+// Matrix4x3の演算子のテスト
 void Test_Matrix4x3_Operater() {
     Matrix4x3 mx1{
         1, 2, 3,
@@ -174,6 +175,22 @@ void Test_Matrix4x3_Operater() {
     auto res2 = mx1 - mx2;
     cout << res2.toString() << endl;
 
+    cout << "mx1 * mx2" << endl;
+    auto res3 = mx1 * mx2;
+    cout << res3.toString() << endl;
+
+    cout << "mx2 * mx1" << endl;
+    auto res4 = mx2 * mx1;
+    cout << res4.toString() << endl;
+
+    cout << "mx1 * 2.0f" << endl;
+    auto res5 = mx1 * 2.0f;
+    cout << res5.toString() << endl;
+
+    cout << "2.0f * mx1" << endl;
+    auto res6 = 2.0f * mx1;
+    cout << res6.toString() << endl;
+
     // cout << "mx1 += mx2" << endl;
     // mx1 += mx2;
     // cout << mx1.toString() << endl;
@@ -181,6 +198,16 @@ void Test_Matrix4x3_Operater() {
     // cout << "mx1 -= mx2" << endl;
     // mx1 -= mx2;
     // cout << mx1.toString() << endl;
+
+    // // mx1 * mx2と同じになる
+    // cout << "mx1 *= mx2" << endl;
+    // mx1 *= mx2;
+    // cout << mx1.toString() << endl;
+
+    // // mx2 * mx1と同じになる
+    // cout << "mx2 *= mx1" << endl;
+    // mx2 *= mx1;
+    // cout << mx2.toString() << endl;
 
     cout << "mx1 == mx2" << endl;
     cout << std::boolalpha << (mx1 == mx2) << endl;
@@ -195,6 +222,7 @@ void Test_Matrix4x3_Operater() {
     cout << std::boolalpha << (mx3 != mx4) << endl;
 }
 
+// Matrix4x3の行列式のテスト
 void Test_Matrix4x3_Determinant() {
     Matrix4x3 m{
         1, 1, 1,
@@ -208,6 +236,7 @@ void Test_Matrix4x3_Determinant() {
     cout << m.determinant() << endl;
 }
 
+// Matrix4x3の逆行列のテスト
 void Test_Matrix4x3_Inverse() {
     Matrix4x3 m{
         8, 5, 7,
@@ -233,5 +262,5 @@ int main()
     // Test_Matrix4x3_Transpose();
     // Test_Matrix4x3_Operater();
     // Test_Matrix4x3_Determinant();
-    Test_Matrix4x3_Inverse();
+    // Test_Matrix4x3_Inverse();
 }
