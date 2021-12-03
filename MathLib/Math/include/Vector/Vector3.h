@@ -24,20 +24,20 @@ namespace gnLib {
 		float z;
 
 		Vector3();
-		Vector3(const Vector2& _vector);
-		Vector3(const Vector3& _vector);
+		Vector3(const Vector2& _v);
+		Vector3(const Vector3& _v);
 		Vector3(float _x, float _y, float z = 0.0f);
 		Vector3(float _xyz);
 		~Vector3() = default;
 
 		void setPos(float _x, float _y, float _z);
-		void setPos(const Vector3& _vector);
+		void setPos(const Vector3& _v);
 
 		const float magnitude() const;
 
-		const Vector3 normalized() const;
-
 		const float sqrMagnitude() const;
+
+		const Vector3 normalized() const;
 
 		// ”¼•ª‚Ì’·‚³
 		const Vector3 half() const;
@@ -55,28 +55,30 @@ namespace gnLib {
 
 		const Vector3 operator-() const;
 
-		const Vector3 operator+(const Vector3& _rvec) const;
+		const Vector3 operator+(const Vector3& _v) const;
 
-		const Vector3 operator-(const Vector3& _rvec) const;
+		const Vector3 operator-(const Vector3& _v) const;
 
-		const Vector3 operator*(const Vector3& _rvec) const;
+		const Vector3 operator*(const Vector3& _v) const;
 
-		const Vector3 operator/(const Vector3& _rvec) const;
+		const Vector3 operator/(const Vector3& _v) const;
 
-		const Vector3& operator+=(const Vector3& _rvec);
+		const Vector3& operator+=(const Vector3& _v);
 
-		const Vector3& operator-=(const Vector3& _rvec);
+		const Vector3& operator-=(const Vector3& _v);
 
-		const Vector3& operator*=(const Vector3& _rvec);
+		const Vector3& operator*=(const Vector3& _v);
 
-		const Vector3& operator/=(const Vector3& _rvec);
+		const Vector3& operator/=(const Vector3& _v);
 
-		const bool operator==(const Vector3& _rvec) const;
+		const bool operator==(const Vector3& _v) const;
 
-		const bool operator!=(const Vector3& _rvec) const;
+		const bool operator!=(const Vector3& _v) const;
 
 		const std::string toString() const;
 	};
+
+	const Vector3 operator*(float _scaler, const Vector3 _v);
 }
 
 #endif // !VECTOR3_H

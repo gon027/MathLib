@@ -19,16 +19,16 @@ namespace gnLib {
 		, z(0.0f)
 	{ }
 
-	Vector3::Vector3(const Vector2 & _vector)
-		: x(_vector.x)
-		, y(_vector.y)
+	Vector3::Vector3(const Vector2 & _v)
+		: x(_v.x)
+		, y(_v.y)
 		, z(0.0f)
 	{ }
 
-	Vector3::Vector3(const Vector3 & _vector)
-		: x(_vector.x)
-		, y(_vector.y)
-		, z(_vector.z)
+	Vector3::Vector3(const Vector3 & _v)
+		: x(_v.x)
+		, y(_v.y)
+		, z(_v.z)
 	{ }
 
 	gnLib::Vector3::Vector3(float _x, float _y, float _z)
@@ -50,9 +50,9 @@ namespace gnLib {
 		z = _z;
 	}
 
-	void Vector3::setPos(const Vector3 & _vector)
+	void Vector3::setPos(const Vector3 & _v)
 	{
-		setPos(_vector.x, _vector.y, _vector.z);
+		setPos(_v.x, _v.y, _v.z);
 	}
 
 	const float Vector3::magnitude() const
@@ -60,25 +60,26 @@ namespace gnLib {
 		return x * x + y * y + z * z;
 	}
 
-	const Vector3 Vector3::normalized() const
-	{
-		auto length = sqrMagnitude();
-
-		return {
-			x / length,
-			y / length,
-			z / length
-		};
-	}
-
 	const float Vector3::sqrMagnitude() const
 	{
 		return sqrtf(magnitude());
 	}
 
+	const Vector3 Vector3::normalized() const
+	{
+		auto length = sqrMagnitude();
+		auto oneOverLen = 1.0f / length;
+
+		return {
+			x * oneOverLen,
+			y * oneOverLen,
+			z * oneOverLen
+		};
+	}
+
 	const Vector3 Vector3::half() const
 	{
-		return Vector3{ x / 2.0f, y / 2.0f, z / 2.0f };
+		return { x * 0.5f, y * 0.5f, z * 0.5f };
 	}
 
 	const float Vector3::dot(const Vector3 & _v)
@@ -110,74 +111,84 @@ namespace gnLib {
 		return { -x, -y, -z };
 	}
 
-	const Vector3 Vector3::operator+(const Vector3 & _rvec) const
+	const Vector3 Vector3::operator+(const Vector3 & _v) const
 	{
-		return { x + _rvec.x, y + _rvec.y, z + _rvec.z };
+		return { x + _v.x, y + _v.y, z + _v.z };
 	}
 
-	const Vector3 Vector3::operator-(const Vector3 & _rvec) const
+	const Vector3 Vector3::operator-(const Vector3 & _v) const
 	{
-		return { x - _rvec.x, y - _rvec.y, z - _rvec.z };
+		return { x - _v.x, y - _v.y, z - _v.z };
 	}
 
-	const Vector3 Vector3::operator*(const Vector3 & _rvec) const
+	const Vector3 Vector3::operator*(const Vector3 & _v) const
 	{
-		return { x * _rvec.x, y * _rvec.y, z * _rvec.z };
+		return { x * _v.x, y * _v.y, z * _v.z };
 	}
 
-	const Vector3 Vector3::operator/(const Vector3 & _rvec) const
+	const Vector3 Vector3::operator/(const Vector3 & _v) const
 	{
-		return { x / _rvec.x, y / _rvec.y, z / _rvec.z };
+		return { x / _v.x, y / _v.y, z / _v.z };
 	}
 
-	const Vector3& Vector3::operator+=(const Vector3 & _rvec)
+	const Vector3& Vector3::operator+=(const Vector3 & _v)
 	{
-		this->x += _rvec.x;
-		this->y += _rvec.y;
-		this->z += _rvec.z;
+		this->x += _v.x;
+		this->y += _v.y;
+		this->z += _v.z;
 		return *this;
 	}
 
-	const Vector3& Vector3::operator-=(const Vector3 & _rvec)
+	const Vector3& Vector3::operator-=(const Vector3 & _v)
 	{
-		this->x -= _rvec.x;
-		this->y -= _rvec.y;
-		this->z -= _rvec.z;
+		this->x -= _v.x;
+		this->y -= _v.y;
+		this->z -= _v.z;
 		return *this;
 	}
 
-	const Vector3& Vector3::operator*=(const Vector3 & _rvec)
+	const Vector3& Vector3::operator*=(const Vector3 & _v)
 	{
-		this->x *= _rvec.x;
-		this->y *= _rvec.y;
-		this->z *= _rvec.z;
+		this->x *= _v.x;
+		this->y *= _v.y;
+		this->z *= _v.z;
 		return *this;
 	}
 
-	const Vector3& Vector3::operator/=(const Vector3 & _rvec)
+	const Vector3& Vector3::operator/=(const Vector3 & _v)
 	{
-		this->x /= _rvec.x;
-		this->y /= _rvec.y;
-		this->z /= _rvec.z;
+		this->x /= _v.x;
+		this->y /= _v.y;
+		this->z /= _v.z;
 		return *this;
 	}
 
-	const bool Vector3::operator==(const Vector3 & _rvec) const
+	const bool Vector3::operator==(const Vector3 & _v) const
 	{
-		return (x == _rvec.x) && (y == _rvec.y) && (z == _rvec.z);
+		return (x == _v.x) && (y == _v.y) && (z == _v.z);
 	}
 
-	const bool Vector3::operator!=(const Vector3 & _rvec) const
+	const bool Vector3::operator!=(const Vector3 & _v) const
 	{
-		return (x != _rvec.x) || (y != _rvec.y) || (z != _rvec.z);
+		return !(*this == _v);
 	}
 
 	const std::string Vector3::toString() const 
 	{
-		return "[x: " + std::to_string(x)
-			+ ", y: " + std::to_string(y)
-			+ ", z " + std::to_string(z)
-			+ "]\n";
+		return { 
+			" [x: " + std::to_string(x) + 
+			", y: " + std::to_string(y) + 
+			", z: " + std::to_string(z) + "]\n"
+		};
+	}
+
+	const Vector3 operator*(float _scaler, const Vector3 _v)
+	{
+		return {
+			_scaler * _v.x,
+			_scaler * _v.y,
+			_scaler * _v.z,
+		};
 	}
 
 }

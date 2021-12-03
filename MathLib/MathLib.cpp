@@ -307,5 +307,27 @@ int main()
     // Test_Quaternion();
     // Test_Quaternion_Normalized();
     // Test_Quaternion_Dot();
-    Test_Quaternion_Inverse();
+    // Test_Quaternion_Inverse();
+
+    // Vector2 v{ 100.0f, 200.0f };
+    // auto v2 = 2.0f * v;
+    // cout << v2.toString() << endl;
+    // cout << v2.half().toString() << endl;
+    // 
+    // Vector2 rv{ 100.0f, 200.0f };
+    // cout << std::boolalpha << (v == rv) << endl;
+    // cout << std::boolalpha << (v != rv) << endl;
+    // cout << std::boolalpha << (v == v2) << endl;
+    // cout << std::boolalpha << (v != v2) << endl;
+
+    Vector3 v3{ 200.0f, 300.0f, 500.0f };
+    auto v4 = 2.0f * v3;
+    cout << v4.toString() << endl;
+    cout << v4.half().toString() << endl;
+    
+    Vector3 v5{ 200.0f, 300.0f, 500.0f };
+    cout << std::boolalpha << (v3 == v5) << endl;
+    cout << std::boolalpha << (v3 != v5) << endl;
+    cout << std::boolalpha << (v3 == v4) << endl;
+    cout << std::boolalpha << (v3 != v4) << endl;
 }

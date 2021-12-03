@@ -3,6 +3,7 @@
 #include <cmath>
 
 namespace gnLib {
+
 	Vector2 Vector2::Up     {  0.0f,  1.0f };
 	Vector2 Vector2::Down   {  0.0f, -1.0f };
 	Vector2 Vector2::Left   { -1.0f,  0.0f };
@@ -11,13 +12,13 @@ namespace gnLib {
 	Vector2 Vector2::Zero   {  0.0f,  0.0f };
 
 	Vector2::Vector2()
-		: x(0)
-		, y(0)
+		: x(0.0f)
+		, y(0.0f)
 	{ }
 
-	Vector2::Vector2(const Vector2 & _vector)
-		: x(_vector.x)
-		, y(_vector.y)	
+	Vector2::Vector2(const Vector2 & _v)
+		: x(_v.x)
+		, y(_v.y)	
 	{ }
 
 	Vector2::Vector2(float _x, float _y)
@@ -36,15 +37,20 @@ namespace gnLib {
 		y = _y;
 	}
 
-	void Vector2::setPos(const Vector2 & _vector)
+	void Vector2::setPos(const Vector2 & _v)
 	{
-		x = _vector.x;
-		y = _vector.y;
+		x = _v.x;
+		y = _v.y;
 	}
 
 	const float Vector2::magnitude() const
 	{
 		return x * x + y * y;
+	}
+
+	const float Vector2::sqrMagnitude() const
+	{
+		return std::sqrt(magnitude());
 	}
 
 	const Vector2 Vector2::normalized() const
@@ -59,102 +65,107 @@ namespace gnLib {
 		}
 	}
 
-	const float Vector2::sqrMagnitude() const
-	{
-		return std::sqrt(magnitude());
-	}
-
 	const Vector2 Vector2::half() const
 	{
-		return Vector2{ x / 2.0f, y / 2.0f };
+		return { x * 0.5f, y * 0.5f };
 	}
 
-	const float Vector2::dot(const Vector2& _rvec)
+	const float Vector2::dot(const Vector2& _v)
 	{
-		return this->x * _rvec.x + this->y * _rvec.y;
+		return this->x * _v.x + this->y * _v.y;
 	}
 
-	const float Vector2::cross(const Vector2 & _rvec)
+	const float Vector2::cross(const Vector2 & _v)
 	{
-		return this->x * _rvec.y - this->y * _rvec.x;
+		return this->x * _v.y - this->y * _v.x;
 	}
 
 	Vector3 Vector2::toVector3()
 	{
-		return Vector3(this->x, this->y, 0.0f);
+		return { this->x, this->y, 0.0f };
 	}
 
 	const Vector2 Vector2::operator+() const
 	{
-		return {x, y};
+		return { x, y };
 	}
 
 	const Vector2 Vector2::operator-() const
 	{
-		return {-x, -y};
+		return { -x, -y };
 	}
 
-	const Vector2 Vector2::operator+(const Vector2 & _rvec) const
+	const Vector2 Vector2::operator+(const Vector2 & _v) const
 	{
-		return {x + _rvec.x, y + _rvec.y};
+		return { x + _v.x, y + _v.y };
 	}
 
-	const Vector2 Vector2::operator-(const Vector2 & _rvec) const
+	const Vector2 Vector2::operator-(const Vector2 & _v) const
 	{
-		return { x - _rvec.x, y - _rvec.y };
+		return { x - _v.x, y - _v.y };
 	}
 
-	const Vector2 Vector2::operator*(const Vector2 & _rvec) const
+	const Vector2 Vector2::operator*(const Vector2 & _v) const
 	{
-		return { x * _rvec.x, y * _rvec.y };
+		return { x * _v.x, y * _v.y };
 	}
 
-	const Vector2 Vector2::operator/(const Vector2 & _rvec) const
+	const Vector2 Vector2::operator/(const Vector2 & _v) const
 	{
-		return { x / _rvec.x, y / _rvec.y };
+		return { x / _v.x, y / _v.y };
 	}
 
-	const Vector2& Vector2::operator+=(const Vector2 & _rvec)
+	const Vector2& Vector2::operator+=(const Vector2 & _v)
 	{
-		this->x += _rvec.x;
-		this->y += _rvec.y;
+		this->x += _v.x;
+		this->y += _v.y;
 		return *this;
 	}
 
-	const Vector2& Vector2::operator-=(const Vector2 & _rvec)
+	const Vector2& Vector2::operator-=(const Vector2 & _v)
 	{
-		this->x -= _rvec.x;
-		this->y -= _rvec.y;
+		this->x -= _v.x;
+		this->y -= _v.y;
 		return *this;
 	}
 
-	const Vector2& Vector2::operator*=(const Vector2 & _rvec)
+	const Vector2& Vector2::operator*=(const Vector2 & _v)
 	{
-		this->x *= _rvec.x;
-		this->y *= _rvec.y;
+		this->x *= _v.x;
+		this->y *= _v.y;
 		return *this;
 	}
 
-	const Vector2& Vector2::operator/=(const Vector2 & _rvec)
+	const Vector2& Vector2::operator/=(const Vector2 & _v)
 	{
-		this->x /= _rvec.x;
-		this->y /= _rvec.y;
+		this->x /= _v.x;
+		this->y /= _v.y;
 		return *this; Vector2();
 	}
 
-	const bool Vector2::operator==(const Vector2 & _rvec) const
+	const bool Vector2::operator==(const Vector2 & _v) const
 	{
-		return (x == _rvec.x) && (y == _rvec.y);
+		return (x == _v.x) && (y == _v.y);
 	}
 
-	const bool Vector2::operator!=(const Vector2 & _rvec) const
+	const bool Vector2::operator!=(const Vector2 & _v) const
 	{
-		return (x != _rvec.x) || (y != _rvec.y);
+		return !(*this == _v);
 	}
+
 	const std::string Vector2::toString() const
 	{
-		return "[x: " + std::to_string(x)
-			+ ", y: " + std::to_string(y)
-			+ "]\n";
+		return { 
+			"[ x: " + std::to_string(x) + 
+			", y: " + std::to_string(y) + " ]\n"
+		};
+	}
+
+	const Vector2 operator*(float _scaler, const Vector2& _v)
+	{
+		return {
+			_scaler * _v.x,
+			_scaler * _v.y
+		};
 	}
 }
