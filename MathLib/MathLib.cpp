@@ -250,6 +250,26 @@ void Test_Matrix4x3_Inverse() {
     cout << m.toString() << endl;
 }
 
+// Quaternionのテスト
+void Test_Quaternion() {
+    auto q1 = Quaternion{ 1, 2, 3, 4 };
+    auto q2 = Quaternion{ 5, 6, 7, 8 };
+    auto q3 = q1 * q2;
+    auto q4 = q2 * q1;
+     
+    cout << q3.toString() << endl;
+    cout << q4.toString() << endl;
+}
+
+void Test_Quaternion_Normalized() {
+    auto q = Quaternion{ 1, 2, 3, 4 };
+
+
+    cout << "SqrtLength = " << q.sqrtLength() << endl;
+    cout << "Length = " << q.length() << endl;;
+    cout << "Normalized = " << q.normalized().toString() << endl;
+}
+
 int main()
 {
     // Test_ClassSize();
@@ -263,4 +283,40 @@ int main()
     // Test_Matrix4x3_Operater();
     // Test_Matrix4x3_Determinant();
     // Test_Matrix4x3_Inverse();
+
+    // Test_Quaternion();
+    // Test_Quaternion_Normalized();
+
+    auto q = Quaternion{ 7, 3, 1, 4 };
+    auto cq = q.inverse();
+    cout << q.toString() << endl;
+    cout << cq.toString() << endl;
+
+    auto r = q * cq;
+    cout << r.toString() << endl;
+
+    // auto cq = q.conjugate();
+
+    // cout << q.toString() << endl;
+    // cout << cq.toString() << endl;
+    // 
+    // auto qcq = q * cq;
+    // cout << qcq.toString() << endl;
+    // 
+    // // cout << q.sqrtLength() << endl;
+    // // cout << qcq.length() << endl;
+    // 
+    // // iverse
+    // // q^-1 = cq / |q|^2
+    // auto qLength = q.sqrtLength();
+    // auto x = cq.x / qLength;
+    // auto y = cq.y / qLength;
+    // auto z = cq.z / qLength;
+    // auto w = cq.w / qLength;
+    // auto invQ = Quaternion{ x, y, z, w };
+    // cout << invQ.toString() << endl;
+    // 
+    // auto a = q * invQ;
+    // cout << a.toString() << endl;
+
 }

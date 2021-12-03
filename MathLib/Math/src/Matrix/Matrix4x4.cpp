@@ -1,7 +1,6 @@
 #include "../../include/Matrix/Matrix4x4.h"
 #include <string>
 #include <cmath>
-#include <iostream>
 
 #define tostr(value) std::to_string(value)
 
@@ -66,7 +65,6 @@ namespace gnLib {
         , m20(_m20), m21(_m21), m22(_m22), m23(_m23)
         , m30(_m30), m31(_m31), m32(_m32), m33(_m33)
     {
-        std::cout << "Matrix4x4::Constracter" << std::endl;
     }
 
     Matrix4x4::Matrix4x4(const float _mat[16])
