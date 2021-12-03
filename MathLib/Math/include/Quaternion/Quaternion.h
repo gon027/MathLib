@@ -25,8 +25,6 @@ namespace gnLib {
 
 		const float dot(const Quaternion& _q);
 
-		const float cross(const Quaternion& _q);
-
 		const Quaternion operator* (const Quaternion& _q) const;
 
 		const bool operator== (const Quaternion& _q) const;

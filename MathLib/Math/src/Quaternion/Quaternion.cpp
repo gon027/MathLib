@@ -59,15 +59,19 @@ namespace gnLib {
             return Quaternion::identity();
         }
 
-        auto cq = conjugate();
         auto oneOverLen = 1.0f / len;
 
         return {
-            cq.x * oneOverLen,
-            cq.y * oneOverLen,
-            cq.z * oneOverLen,
-            cq.w * oneOverLen,
+            -x * oneOverLen,
+            -y * oneOverLen,
+            -z * oneOverLen,
+            w * oneOverLen,
         };
+    }
+
+    const float Quaternion::dot(const Quaternion& _q)
+    {
+        return w * _q.w + x * _q.x + y * _q.y + z * _q.z;
     }
 
     const Quaternion Quaternion::operator*(const Quaternion& _q) const
