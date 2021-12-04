@@ -39,6 +39,9 @@
     <ClInclude Include="Math\include\Vector\Vector3.h">
       <Filter>Vector</Filter>
     </ClInclude>
+    <ClInclude Include="Math\include\Math.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\src\Matrix\Matrix4x4.cpp">

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Math\include\Math.hpp" />
     <ClInclude Include="Math\include\Matrix\Matrix4x3.h" />
     <ClInclude Include="Math\include\Matrix\Matrix4x4.h" />
     <ClInclude Include="Math\include\Quaternion\Quaternion.h" />

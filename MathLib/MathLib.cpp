@@ -1,9 +1,5 @@
 ﻿#include <iostream>
-#include <Math/include/Matrix/Matrix4x4.h>
-#include <Math/include/Matrix/Matrix4x3.h>
-#include <Math/include/Quaternion/Quaternion.h>
-#include <Math/include/Vector/Vector2.h>
-#include <Math/include/Vector/Vector3.h>
+#include <Math/include/Math.hpp>
 using namespace std;
 using namespace gnLib;
 
@@ -290,6 +286,24 @@ void Test_Quaternion_Inverse() {
     cout << r.toString() << endl;
 }
 
+// _Matrix4x4のRotationテスト
+void Test_Matrix4x4_Rotation() {
+    auto x = Matrix4x4::rotationX(10.0f);
+    cout << x.toString() << endl;
+
+    auto y = Matrix4x4::rotationY(45.0f);
+    cout << y.toString() << endl;
+
+    auto z = Matrix4x4::rotationZ(30.0f);
+    cout << z.toString() << endl;
+
+    auto zxy = z * x * y;
+    cout << zxy.toString() << endl;
+
+    auto a = Matrix4x4::rotationRollPitchYaw(10.f, 45.f, 30.f);
+    cout << a.toString() << endl;
+}
+
 int main()
 {
     // Test_ClassSize();
@@ -309,25 +323,5 @@ int main()
     // Test_Quaternion_Dot();
     // Test_Quaternion_Inverse();
 
-    // Vector2 v{ 100.0f, 200.0f };
-    // auto v2 = 2.0f * v;
-    // cout << v2.toString() << endl;
-    // cout << v2.half().toString() << endl;
-    // 
-    // Vector2 rv{ 100.0f, 200.0f };
-    // cout << std::boolalpha << (v == rv) << endl;
-    // cout << std::boolalpha << (v != rv) << endl;
-    // cout << std::boolalpha << (v == v2) << endl;
-    // cout << std::boolalpha << (v != v2) << endl;
-
-    Vector3 v3{ 200.0f, 300.0f, 500.0f };
-    auto v4 = 2.0f * v3;
-    cout << v4.toString() << endl;
-    cout << v4.half().toString() << endl;
-    
-    Vector3 v5{ 200.0f, 300.0f, 500.0f };
-    cout << std::boolalpha << (v3 == v5) << endl;
-    cout << std::boolalpha << (v3 != v5) << endl;
-    cout << std::boolalpha << (v3 == v4) << endl;
-    cout << std::boolalpha << (v3 != v4) << endl;
+    Test_Matrix4x4_Rotation();
 }

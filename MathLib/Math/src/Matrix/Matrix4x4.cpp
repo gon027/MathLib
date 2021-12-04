@@ -1,6 +1,8 @@
 #include "../../include/Matrix/Matrix4x4.h"
+#include "../../include/Vector/Vector3.h"
 #include <string>
 #include <cmath>
+#include <iostream>
 
 #define tostr(value) std::to_string(value)
 
@@ -38,20 +40,112 @@ namespace gnLib {
         );
     }
 
+    Matrix4x4 Matrix4x4::rotationX(float _angle)
+    {
+        const float s{ std::sinf(_angle) };
+        const float c{ std::cosf(_angle) };
+
+        return {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, c, -s, 0.0f,
+            0.0f, s, c, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f
+        };
+    }
+
+    Matrix4x4 Matrix4x4::rotationY(float _angle)
+    {
+        const float s{ std::sinf(_angle) };
+        const float c{ std::cosf(_angle) };
+
+        return {
+            c, 0.0f, s, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            -s, 0.0f, c, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f
+        };
+    }
+
+    Matrix4x4 Matrix4x4::rotationZ(float _angle)
+    {
+        const float s{ std::sinf(_angle) };
+        const float c{ std::cosf(_angle) };
+
+        return {
+            c, -s, 0.0f, 0.0f,
+            s, c, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f
+        };
+    }
+
+    Matrix4x4 Matrix4x4::rotationRollPitchYaw(float _pitch, float _yaw, float _roll)
+    {
+        return rotationZ(_roll) * rotationX(_pitch) * rotationY(_yaw);
+    }
+
+    Matrix4x4 Matrix4x4::rotationRollPitchYaw(const Vector3& _angles)
+    {
+        return rotationZ(_angles.z) * rotationX(_angles.x) * rotationY(_angles.y);
+    }
+
+    Matrix4x4 Matrix4x4::scaling(float _scallX, float _scallY, float _scallZ)
+    {
+        return {
+            _scallX, 0.0f, 0.0f, 0.0f,
+            0.0f, _scallY, 0.0f, 0.0f,
+            0.0f, 0.0f, _scallZ, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
+        };
+    }
+
+    Matrix4x4 Matrix4x4::scaling(const Vector3& _scall)
+    {
+        return {
+            _scall.x, 0.0f, 0.0f, 0.0f,
+            0.0f, _scall.y, 0.0f, 0.0f,
+            0.0f, 0.0f, _scall.z, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
+        };
+    }
+
+    Matrix4x4 Matrix4x4::translation(float _offsetX, float _offsetY, float _offsetZ)
+    {
+        return {
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f,
+            _offsetX, _offsetY, _offsetZ, 1.0f
+        };
+    }
+
+    Matrix4x4 Matrix4x4::translation(const Vector3& _offset)
+    {
+        return {
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 0.0f,
+            _offset.x, _offset.y, _offset.z, 1.0f
+        };
+    }
+
     Matrix4x4::Matrix4x4()
         : m00(0.0f), m01(0.0f), m02(0.0f), m03(0.0f)
         , m10(0.0f), m11(0.0f), m12(0.0f), m13(0.0f)
         , m20(0.0f), m21(0.0f), m22(0.0f), m23(0.0f)
         , m30(0.0f), m31(0.0f), m32(0.0f), m33(0.0f)
     {
+        //std::cout << "Matrix4x4::Constractor()" << std::endl;
     }
 
-    Matrix4x4::Matrix4x4(const Matrix4x4& _mat)
-        : m00(_mat.m00), m01(_mat.m01), m02(_mat.m02), m03(_mat.m03)
-        , m10(_mat.m10), m11(_mat.m11), m12(_mat.m12), m13(_mat.m13)
-        , m20(_mat.m20), m21(_mat.m21), m22(_mat.m22), m23(_mat.m23)
-        , m30(_mat.m30), m31(_mat.m31), m32(_mat.m32), m33(_mat.m33)
+    Matrix4x4::Matrix4x4(const Matrix4x4& _m)
+        : m00(_m.m00), m01(_m.m01), m02(_m.m02), m03(_m.m03)
+        , m10(_m.m10), m11(_m.m11), m12(_m.m12), m13(_m.m13)
+        , m20(_m.m20), m21(_m.m21), m22(_m.m22), m23(_m.m23)
+        , m30(_m.m30), m31(_m.m31), m32(_m.m32), m33(_m.m33)
     {
+        //std::cout << "Matrix4x4::Constractor(_m)" << std::endl;
+
     }
 
     Matrix4x4::Matrix4x4(
@@ -65,14 +159,18 @@ namespace gnLib {
         , m20(_m20), m21(_m21), m22(_m22), m23(_m23)
         , m30(_m30), m31(_m31), m32(_m32), m33(_m33)
     {
+        //std::cout << "Matrix4x4::Constractor(_m11 - _m33)" << std::endl;
+
     }
 
-    Matrix4x4::Matrix4x4(const float _mat[16])
-        : m00(_mat[0]), m01(_mat[1]), m02(_mat[2]), m03(_mat[3])
-        , m10(_mat[4]), m11(_mat[5]), m12(_mat[6]), m13(_mat[7])
-        , m20(_mat[8]), m21(_mat[9]), m22(_mat[10]), m23(_mat[11])
-        , m30(_mat[12]), m31(_mat[13]), m32(_mat[14]), m33(_mat[15])
+    Matrix4x4::Matrix4x4(const float _m[16])
+        : m00(_m[0]), m01(_m[1]), m02(_m[2]), m03(_m[3])
+        , m10(_m[4]), m11(_m[5]), m12(_m[6]), m13(_m[7])
+        , m20(_m[8]), m21(_m[9]), m22(_m[10]), m23(_m[11])
+        , m30(_m[12]), m31(_m[13]), m32(_m[14]), m33(_m[15])
     {
+        //std::cout << "Matrix4x4::Constractor(_m[16])" << std::endl;
+
     }
     
     float Matrix4x4::determinant()
@@ -133,47 +231,47 @@ namespace gnLib {
         std::swap(m23, m32);
     }
 
-    const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _mat) const
+    const Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _m) const
     {
         return {
-            m00 + _mat.m00, m01 + _mat.m01, m02 + _mat.m02, m03 + _mat.m03,
-            m10 + _mat.m10, m11 + _mat.m11, m12 + _mat.m12, m13 + _mat.m13,
-            m20 + _mat.m20, m21 + _mat.m21, m22 + _mat.m22, m23 + _mat.m23,
-            m30 + _mat.m30, m31 + _mat.m31, m32 + _mat.m32, m33 + _mat.m33
+            m00 + _m.m00, m01 + _m.m01, m02 + _m.m02, m03 + _m.m03,
+            m10 + _m.m10, m11 + _m.m11, m12 + _m.m12, m13 + _m.m13,
+            m20 + _m.m20, m21 + _m.m21, m22 + _m.m22, m23 + _m.m23,
+            m30 + _m.m30, m31 + _m.m31, m32 + _m.m32, m33 + _m.m33
         };
     }
 
-    const Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _mat) const
+    const Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _m) const
     {
         return {
-            m00 - _mat.m00, m01 - _mat.m01, m02 - _mat.m02, m03 - _mat.m03,
-            m10 - _mat.m10, m11 - _mat.m11, m12 - _mat.m12, m13 - _mat.m13,
-            m20 - _mat.m20, m21 - _mat.m21, m22 - _mat.m22, m23 - _mat.m23,
-            m30 - _mat.m30, m31 - _mat.m31, m32 - _mat.m32, m33 - _mat.m33
+            m00 - _m.m00, m01 - _m.m01, m02 - _m.m02, m03 - _m.m03,
+            m10 - _m.m10, m11 - _m.m11, m12 - _m.m12, m13 - _m.m13,
+            m20 - _m.m20, m21 - _m.m21, m22 - _m.m22, m23 - _m.m23,
+            m30 - _m.m30, m31 - _m.m31, m32 - _m.m32, m33 - _m.m33
         };
     }
 
-    const Matrix4x4 Matrix4x4::operator*(const Matrix4x4& _mat) const
+    const Matrix4x4 Matrix4x4::operator*(const Matrix4x4& _m) const
     {
-        const float nm00{ m00 * _mat.m00 + m01 * _mat.m10 + m02 * _mat.m20 + m03 * _mat.m30 };
-        const float nm01{ m00 * _mat.m01 + m01 * _mat.m11 + m02 * _mat.m21 + m03 * _mat.m31 };
-        const float nm02{ m00 * _mat.m02 + m01 * _mat.m12 + m02 * _mat.m22 + m03 * _mat.m32 };
-        const float nm03{ m00 * _mat.m03 + m01 * _mat.m13 + m02 * _mat.m23 + m03 * _mat.m33 };
+        const float nm00{ m00 * _m.m00 + m01 * _m.m10 + m02 * _m.m20 + m03 * _m.m30 };
+        const float nm01{ m00 * _m.m01 + m01 * _m.m11 + m02 * _m.m21 + m03 * _m.m31 };
+        const float nm02{ m00 * _m.m02 + m01 * _m.m12 + m02 * _m.m22 + m03 * _m.m32 };
+        const float nm03{ m00 * _m.m03 + m01 * _m.m13 + m02 * _m.m23 + m03 * _m.m33 };
 
-        const float nm10{ m10 * _mat.m00 + m11 * _mat.m10 + m12 * _mat.m20 + m13 * _mat.m30 };
-        const float nm11{ m10 * _mat.m01 + m11 * _mat.m11 + m12 * _mat.m21 + m13 * _mat.m31 };
-        const float nm12{ m10 * _mat.m02 + m11 * _mat.m12 + m12 * _mat.m22 + m13 * _mat.m32 };
-        const float nm13{ m10 * _mat.m03 + m11 * _mat.m13 + m12 * _mat.m23 + m13 * _mat.m33 };
+        const float nm10{ m10 * _m.m00 + m11 * _m.m10 + m12 * _m.m20 + m13 * _m.m30 };
+        const float nm11{ m10 * _m.m01 + m11 * _m.m11 + m12 * _m.m21 + m13 * _m.m31 };
+        const float nm12{ m10 * _m.m02 + m11 * _m.m12 + m12 * _m.m22 + m13 * _m.m32 };
+        const float nm13{ m10 * _m.m03 + m11 * _m.m13 + m12 * _m.m23 + m13 * _m.m33 };
 
-        const float nm20{ m20 * _mat.m00 + m21 * _mat.m10 + m22 * _mat.m20 + m23 * _mat.m30 };
-        const float nm21{ m20 * _mat.m01 + m21 * _mat.m11 + m22 * _mat.m21 + m23 * _mat.m31 };
-        const float nm22{ m20 * _mat.m02 + m21 * _mat.m12 + m22 * _mat.m22 + m23 * _mat.m32 };
-        const float nm23{ m20 * _mat.m03 + m21 * _mat.m13 + m22 * _mat.m23 + m23 * _mat.m33 };
+        const float nm20{ m20 * _m.m00 + m21 * _m.m10 + m22 * _m.m20 + m23 * _m.m30 };
+        const float nm21{ m20 * _m.m01 + m21 * _m.m11 + m22 * _m.m21 + m23 * _m.m31 };
+        const float nm22{ m20 * _m.m02 + m21 * _m.m12 + m22 * _m.m22 + m23 * _m.m32 };
+        const float nm23{ m20 * _m.m03 + m21 * _m.m13 + m22 * _m.m23 + m23 * _m.m33 };
 
-        const float nm30{ m30 * _mat.m00 + m31 * _mat.m10 + m32 * _mat.m20 + m33 * _mat.m30 };
-        const float nm31{ m30 * _mat.m01 + m31 * _mat.m11 + m32 * _mat.m21 + m33 * _mat.m31 };
-        const float nm32{ m30 * _mat.m02 + m31 * _mat.m12 + m32 * _mat.m22 + m33 * _mat.m32 };
-        const float nm33{ m30 * _mat.m03 + m31 * _mat.m13 + m32 * _mat.m23 + m33 * _mat.m33 };
+        const float nm30{ m30 * _m.m00 + m31 * _m.m10 + m32 * _m.m20 + m33 * _m.m30 };
+        const float nm31{ m30 * _m.m01 + m31 * _m.m11 + m32 * _m.m21 + m33 * _m.m31 };
+        const float nm32{ m30 * _m.m02 + m31 * _m.m12 + m32 * _m.m22 + m33 * _m.m32 };
+        const float nm33{ m30 * _m.m03 + m31 * _m.m13 + m32 * _m.m23 + m33 * _m.m33 };
 
         return {
             nm00, nm01, nm02, nm03,
@@ -193,46 +291,46 @@ namespace gnLib {
         };
     }
 
-    const Matrix4x4 operator*(float _scalar, const Matrix4x4& _mat)
+    const Matrix4x4 operator*(float _scalar, const Matrix4x4& _m)
     {
         return {
-           _scalar * _mat.m00, _scalar * _mat.m01, _scalar * _mat.m02, _scalar * _mat.m03,
-           _scalar * _mat.m10, _scalar * _mat.m11, _scalar * _mat.m12, _scalar * _mat.m13,
-           _scalar * _mat.m20, _scalar * _mat.m21, _scalar * _mat.m22, _scalar * _mat.m23,
-           _scalar * _mat.m30, _scalar * _mat.m31, _scalar * _mat.m32, _scalar * _mat.m33
+           _scalar * _m.m00, _scalar * _m.m01, _scalar * _m.m02, _scalar * _m.m03,
+           _scalar * _m.m10, _scalar * _m.m11, _scalar * _m.m12, _scalar * _m.m13,
+           _scalar * _m.m20, _scalar * _m.m21, _scalar * _m.m22, _scalar * _m.m23,
+           _scalar * _m.m30, _scalar * _m.m31, _scalar * _m.m32, _scalar * _m.m33
         };
     }
 
-    const bool Matrix4x4::operator==(const Matrix4x4& _rm) const
+    const bool Matrix4x4::operator==(const Matrix4x4& _m) const
     {
         return {
-            m00 == _rm.m00 && m01 == _rm.m01 && m02 == _rm.m02 && m03 == _rm.m03 &&
-            m10 == _rm.m10 && m11 == _rm.m11 && m12 == _rm.m12 && m13 == _rm.m13 &&
-            m20 == _rm.m20 && m21 == _rm.m21 && m22 == _rm.m22 && m23 == _rm.m23 &&
-            m30 == _rm.m30 && m31 == _rm.m31 && m32 == _rm.m32 && m33 == _rm.m33
+            m00 == _m.m00 && m01 == _m.m01 && m02 == _m.m02 && m03 == _m.m03 &&
+            m10 == _m.m10 && m11 == _m.m11 && m12 == _m.m12 && m13 == _m.m13 &&
+            m20 == _m.m20 && m21 == _m.m21 && m22 == _m.m22 && m23 == _m.m23 &&
+            m30 == _m.m30 && m31 == _m.m31 && m32 == _m.m32 && m33 == _m.m33
         };
     }
 
-    const bool Matrix4x4::operator!=(const Matrix4x4& _rm) const
+    const bool Matrix4x4::operator!=(const Matrix4x4& _m) const
     {
-        return !(*this == _rm);
+        return !(*this == _m);
     }
 
-    const Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _m)
     {
-        *this = *this + _mat;
+        *this = *this + _m;
         return *this;
     }
 
-    const Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& _m)
     {
-        *this = *this - _mat;
+        *this = *this - _m;
         return *this;
     }
 
-    const Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _mat)
+    const Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _m)
     {
-        *this = *this * _mat;
+        *this = *this * _m;
         return *this;
     }
 
