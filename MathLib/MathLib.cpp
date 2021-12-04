@@ -300,28 +300,28 @@ void Test_Matrix4x4_Rotation() {
     auto zxy = z * x * y;
     cout << zxy.toString() << endl;
 
-    auto a = Matrix4x4::rotationRollPitchYaw(10.f, 45.f, 30.f);
+    auto a = Matrix4x4::rotationRollPitchYaw({ 10.f, 45.f, 30.f });
     cout << a.toString() << endl;
 }
 
-int main()
-{
-    // Test_ClassSize();
-
-    // Test_Matrix4x4_Transpose();
-    // Test_Matrix4x4_Inverse();
-    // Test_Matrix4x4_Operater();
-
-    // Test_Matrix4x3_Constractor();
-    // Test_Matrix4x3_Transpose();
-    // Test_Matrix4x3_Operater();
-    // Test_Matrix4x3_Determinant();
-    // Test_Matrix4x3_Inverse();
-
-    // Test_Quaternion();
-    // Test_Quaternion_Normalized();
-    // Test_Quaternion_Dot();
-    // Test_Quaternion_Inverse();
-
-    Test_Matrix4x4_Rotation();
-}
+//int main()
+//{
+//    // Test_ClassSize();
+//
+//    // Test_Matrix4x4_Transpose();
+//    // Test_Matrix4x4_Inverse();
+//    // Test_Matrix4x4_Operater();
+//
+//    // Test_Matrix4x3_Constractor();
+//    // Test_Matrix4x3_Transpose();
+//    // Test_Matrix4x3_Operater();
+//    // Test_Matrix4x3_Determinant();
+//    // Test_Matrix4x3_Inverse();
+//
+//    // Test_Quaternion();
+//    // Test_Quaternion_Normalized();
+//    // Test_Quaternion_Dot();
+//    // Test_Quaternion_Inverse();
+//
+//    // Test_Matrix4x4_Rotation();
+//}

@@ -47,8 +47,8 @@ namespace gnLib {
 
         return {
             1.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, c, -s, 0.0f,
-            0.0f, s, c, 0.0f,
+            0.0f, c, s, 0.0f,
+            0.0f, -s, c, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f
         };
     }
@@ -59,9 +59,9 @@ namespace gnLib {
         const float c{ std::cosf(_angle) };
 
         return {
-            c, 0.0f, s, 0.0f,
+            c, 0.0f, -s, 0.0f,
             0.0f, 1.0f, 0.0f, 0.0f,
-            -s, 0.0f, c, 0.0f,
+            s, 0.0f, c, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f
         };
     }
@@ -72,8 +72,8 @@ namespace gnLib {
         const float c{ std::cosf(_angle) };
 
         return {
-            c, -s, 0.0f, 0.0f,
-            s, c, 0.0f, 0.0f,
+            c, s, 0.0f, 0.0f,
+            -s, c, 0.0f, 0.0f,
             0.0f, 0.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f
         };
