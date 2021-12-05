@@ -112,9 +112,9 @@ namespace gnLib {
     Matrix4x4 Matrix4x4::translation(float _offsetX, float _offsetY, float _offsetZ)
     {
         return {
-            0.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
             _offsetX, _offsetY, _offsetZ, 1.0f
         };
     }
@@ -153,14 +153,13 @@ namespace gnLib {
 
     Matrix4x4 Matrix4x4::orthographicLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
     {
-        const auto twoNear = 2.0f * _nearZ;
         const auto zDiff = _farZ - _nearZ;
 
         return {
-            twoNear / _viewWidth, 0.0f, 0.0f, 0.0f,
-            0.0f, twoNear / _viewHeight, 0.0f, 0.0f,
-            0.0f, 0.0f, _farZ / zDiff, 0.0f,
-            0.0f, 0.0f, -(_farZ * _nearZ) / zDiff, 1.0f,
+            2.0f / _viewWidth, 0.0f, 0.0f, 0.0f,
+            0.0f, 2.0f / _viewHeight, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f / zDiff, 0.0f,
+            0.0f, 0.0f, -_nearZ / zDiff, 1.0f,
         };
     }
 
@@ -180,8 +179,20 @@ namespace gnLib {
         return {
             w, 0.0f, 0.0f, 0.0f,
             0.0f, h, 0.0f, 0.0f,
-            0.0f, 0.0f, _farZ / zDiff, 0.0f,
-            0.0f, 0.0f, -(_farZ * _nearZ) / zDiff, 1.0f,
+            0.0f, 0.0f, _farZ / zDiff, 1.0f,
+            0.0f, 0.0f, -(_farZ * _nearZ) / zDiff, 0.0f,
+        };
+    }
+
+    Matrix4x4 Matrix4x4::perspectiveLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
+    {
+        const auto zDiff{ _farZ - _nearZ };
+
+        return {
+            2.0f * _nearZ / _viewWidth, 0.0f, 0.0f, 0.0f,
+            0.0f, 2.0f * _nearZ / _viewHeight, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f / zDiff, 1.0f,
+            0.0f, 0.0f, -_nearZ / zDiff, 0.0f,
         };
     }
 

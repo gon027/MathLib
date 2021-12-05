@@ -355,23 +355,36 @@ int main()
     // );
     // cout << lh.toString() << endl;
 
-    auto xog = XMMatrixOrthographicLH(
-        640, 480, 1.0f, 100.0f
-    );
-    print_XMMatrix(xog);
-    
-    auto og = Matrix4x4::orthographicLH(
-        640, 480, 1.0f, 100.0f
-    );
-    cout << og.toString() << endl;
+    // auto xog = XMMatrixOrthographicLH(
+    //     640, 480, 0.5f, 100.0f
+    // );
+    // print_XMMatrix(xog);
+    // 
+    // auto og = Matrix4x4::orthographicLH(
+    //     640, 480, 0.5f, 100.0f
+    // );
+    // cout << og.toString() << endl;
 
-    auto xper = XMMatrixPerspectiveFovLH(
-        (45.0f * 3.141592f / 180.0f), (640.0f / 480.0f), 1.0f, 100.0f
-    );
-    print_XMMatrix(xper);
+    // auto fovAngle = (45.0f * 3.141592f / 180.0f);
+    // auto aspect = (640.0f / 480.0f);
+    // 
+    // auto xper = XMMatrixPerspectiveFovLH(
+    //     fovAngle, aspect, 0.5f, 100.0f
+    // );
+    // print_XMMatrix(xper);
+    // 
+    // auto per = Matrix4x4::perspectiveFovLH(
+    //     fovAngle, aspect, 0.5f, 100.0f
+    // );
+    // cout << per.toString() << endl;
 
-    auto per = Matrix4x4::perspectiveFovLH(
-        (45.0f * 3.141592f / 180.0f), (640.0f / 480.0f), 1.0f, 100.0f
-    );
-    cout << per.toString() << endl;
+    // auto xperlh = XMMatrixPerspectiveLH(
+    //     640, 480, 0.5f, 100.0f
+    // );
+    // print_XMMatrix(xperlh);
+    // 
+    // auto perlh = Matrix4x4::perspectiveLH(
+    //     640, 480, 0.5f, 100.0f
+    // );
+    // cout << perlh.toString() << endl;
 }

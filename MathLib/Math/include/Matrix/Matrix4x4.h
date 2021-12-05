@@ -41,6 +41,8 @@ namespace gnLib {
 		// •Às“Š‰e(¶èÀ•WŒn)
 		static Matrix4x4 perspectiveFovLH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ);
 
+		static Matrix4x4 perspectiveLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ);
+
 		// •Às“Š‰e(‰EèÀ•WŒn)
 		// static Matrix4x4 perspectiveFovRH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ);
 
