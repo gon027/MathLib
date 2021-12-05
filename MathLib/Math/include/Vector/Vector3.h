@@ -43,10 +43,10 @@ namespace gnLib {
 		const Vector3 half() const;
 
 		// “àÏ
-		const float dot(const Vector3& _v);
+		const float dot(const Vector3& _v) const;
 
 		// ŠOÏ
-		const Vector3 cross(const Vector3& _v);
+		const Vector3 cross(const Vector3& _v) const;
 
 		// Vector2‚É•ÏŠ·
 		const Vector2 toVector2();

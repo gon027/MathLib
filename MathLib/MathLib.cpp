@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <Math/include/Math.hpp>
+#include <DirectXMath.h>
 using namespace std;
 using namespace gnLib;
 
@@ -304,24 +305,73 @@ void Test_Matrix4x4_Rotation() {
     cout << a.toString() << endl;
 }
 
-//int main()
-//{
-//    // Test_ClassSize();
-//
-//    // Test_Matrix4x4_Transpose();
-//    // Test_Matrix4x4_Inverse();
-//    // Test_Matrix4x4_Operater();
-//
-//    // Test_Matrix4x3_Constractor();
-//    // Test_Matrix4x3_Transpose();
-//    // Test_Matrix4x3_Operater();
-//    // Test_Matrix4x3_Determinant();
-//    // Test_Matrix4x3_Inverse();
-//
-//    // Test_Quaternion();
-//    // Test_Quaternion_Normalized();
-//    // Test_Quaternion_Dot();
-//    // Test_Quaternion_Inverse();
-//
-//    // Test_Matrix4x4_Rotation();
-//}
+void print_XMMatrix(const DirectX::XMMATRIX& _m) {
+    auto x = _m.r[0].m128_f32;
+    auto y = _m.r[1].m128_f32;
+    auto z = _m.r[2].m128_f32;
+    auto w = _m.r[3].m128_f32;
+
+    cout << "[ x = " << x[0] << ", y = " << x[1] << ", z = " << x[2] << ", w = " << x[3] << " ]" << endl;
+    cout << "[ x = " << y[0] << ", y = " << y[1] << ", z = " << y[2] << ", w = " << y[3] << " ]" << endl;
+    cout << "[ x = " << z[0] << ", y = " << z[1] << ", z = " << z[2] << ", w = " << z[3] << " ]" << endl;
+    cout << "[ x = " << w[0] << ", y = " << w[1] << ", z = " << w[2] << ", w = " << w[3] << " ]" << endl;
+}
+
+int main()
+{
+    // Test_ClassSize();
+
+    // Test_Matrix4x4_Transpose();
+    // Test_Matrix4x4_Inverse();
+    // Test_Matrix4x4_Operater();
+
+    // Test_Matrix4x3_Constractor();
+    // Test_Matrix4x3_Transpose();
+    // Test_Matrix4x3_Operater();
+    // Test_Matrix4x3_Determinant();
+    // Test_Matrix4x3_Inverse();
+
+    // Test_Quaternion();
+    // Test_Quaternion_Normalized();
+    // Test_Quaternion_Dot();
+    // Test_Quaternion_Inverse();
+
+    // Test_Matrix4x4_Rotation();
+
+    using namespace DirectX;
+
+    // auto xlh = XMMatrixLookAtLH(
+    //     { 10, 20, -5 },
+    //     { 0, 0, 0 },
+    //     { 0, 1, 0 }
+    // );
+    // print_XMMatrix(xlh);
+    // // xlh.r[0].m128_f32[0];
+    // 
+    // auto lh = Matrix4x4::lookAtLH(
+    //     { 10, 20, -5 },
+    //     { 0, 0, 0 },
+    //     { 0, 1, 0 }
+    // );
+    // cout << lh.toString() << endl;
+
+    auto xog = XMMatrixOrthographicLH(
+        640, 480, 1.0f, 100.0f
+    );
+    print_XMMatrix(xog);
+    
+    auto og = Matrix4x4::orthographicLH(
+        640, 480, 1.0f, 100.0f
+    );
+    cout << og.toString() << endl;
+
+    auto xper = XMMatrixPerspectiveFovLH(
+        (45.0f * 3.141592f / 180.0f), (640.0f / 480.0f), 1.0f, 100.0f
+    );
+    print_XMMatrix(xper);
+
+    auto per = Matrix4x4::perspectiveFovLH(
+        (45.0f * 3.141592f / 180.0f), (640.0f / 480.0f), 1.0f, 100.0f
+    );
+    cout << per.toString() << endl;
+}

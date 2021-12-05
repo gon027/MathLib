@@ -129,6 +129,69 @@ namespace gnLib {
         };
     }
 
+    Matrix4x4 Matrix4x4::lookAtLH(const Vector3& _eye, const Vector3& _focus, const Vector3& _up)
+    {
+        const auto zAxis{ (_focus - _eye).normalized() };
+        const auto xAxis{ _up.cross(zAxis).normalized() };
+        const auto yAxis{ zAxis.cross(xAxis) };
+        
+        return {
+            xAxis.x, yAxis.x, zAxis.x, 0.0f,
+            xAxis.y, yAxis.y, zAxis.y, 0.0f,
+            xAxis.z, yAxis.z, zAxis.z, 0.0f,
+            -xAxis.dot(_eye),  -yAxis.dot(_eye), -zAxis.dot(_eye), 1.0f
+        };
+    }
+
+    /*
+    Matrix4x4 Matrix4x4::lookAtRH(const Vector3& _eye, const Vector3& _focus, const Vector3& _up)
+    {
+        return {
+        };
+    }
+    */
+
+    Matrix4x4 Matrix4x4::orthographicLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
+    {
+        const auto twoNear = 2.0f * _nearZ;
+        const auto zDiff = _farZ - _nearZ;
+
+        return {
+            twoNear / _viewWidth, 0.0f, 0.0f, 0.0f,
+            0.0f, twoNear / _viewHeight, 0.0f, 0.0f,
+            0.0f, 0.0f, _farZ / zDiff, 0.0f,
+            0.0f, 0.0f, -(_farZ * _nearZ) / zDiff, 1.0f,
+        };
+    }
+
+    /*
+    Matrix4x4 Matrix4x4::orthographicRH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
+    {
+        return Matrix4x4();
+    }
+    */
+
+    Matrix4x4 Matrix4x4::perspectiveFovLH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ)
+    {
+        const auto h = 1.0f / std::tanf(_fovAngleY * 0.5f);
+        const auto w = h / _aspectRatio;
+        const auto zDiff = _farZ - _nearZ;
+
+        return {
+            w, 0.0f, 0.0f, 0.0f,
+            0.0f, h, 0.0f, 0.0f,
+            0.0f, 0.0f, _farZ / zDiff, 0.0f,
+            0.0f, 0.0f, -(_farZ * _nearZ) / zDiff, 1.0f,
+        };
+    }
+
+    /*
+    Matrix4x4 Matrix4x4::perspectiveFovRH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ)
+    {
+        return Matrix4x4();
+    }
+    */
+
     Matrix4x4::Matrix4x4()
         : m00(0.0f), m01(0.0f), m02(0.0f), m03(0.0f)
         , m10(0.0f), m11(0.0f), m12(0.0f), m13(0.0f)

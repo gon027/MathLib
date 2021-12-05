@@ -53,14 +53,14 @@ namespace gnLib {
 
 	public:
 		union {
+			float m[4][3];
+
 			struct {
 				float m00, m01, m02;
 				float m10, m11, m12;
 				float m20, m21, m22;
 				float m30, m31, m32;
 			};
-
-			float m[4][3];
 		};
 	};
 

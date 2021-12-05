@@ -82,12 +82,12 @@ namespace gnLib {
 		return { x * 0.5f, y * 0.5f, z * 0.5f };
 	}
 
-	const float Vector3::dot(const Vector3 & _v)
+	const float Vector3::dot(const Vector3 & _v) const
 	{
 		return x * _v.x + y * _v.y + z * _v.z;
 	}
 
-	const Vector3 Vector3::cross(const Vector3 & _v)
+	const Vector3 Vector3::cross(const Vector3 & _v) const
 	{
 		return {
 			y * _v.z - _v.y * z,
