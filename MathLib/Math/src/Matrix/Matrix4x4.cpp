@@ -122,9 +122,9 @@ namespace gnLib {
     Matrix4x4 Matrix4x4::translation(const Vector3& _offset)
     {
         return {
-            0.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 0.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
             _offset.x, _offset.y, _offset.z, 1.0f
         };
     }
