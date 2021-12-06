@@ -29,26 +29,37 @@ private:
 	system_clock::time_point end{};
 };
 
+Matrix4x4 srt(const Matrix4x4& _s, const Matrix4x4& _r, const Matrix4x4& _t) {
+	auto result = _s * _r;
+	result.m30 = _t.m30;
+	result.m31 = _t.m31;
+	result.m32 = _t.m32;
+	return result;
+}
 
-//int main() {
-//	Timer timer;
-//
-//	// 721mx
-//	for (auto i = 0; i < MAX_COUNT; ++i) {
-//		auto r = Matrix4x4::rotationRollPitchYaw(100, 100, 100);
-//		auto s = Matrix4x4::scaling({ 2.0f, 2.0f, 2.0f });
-//		auto t = Matrix4x4::translation({ 2.0f, 2.0f, 2.0f });
-//		auto srt = s * r * t;
-//	}
-//
-//	timer.printTime("gnLIbMath = ", "ms");
-//
-//	// 1652mx
-//	for (auto i = 0; i < MAX_COUNT; ++i) {
-//		auto r = DirectX::XMMatrixRotationRollPitchYaw(100, 100, 100);
-//		auto s = DirectX::XMMatrixScaling(2, 2, 2);
-//		auto t = DirectX::XMMatrixTranslation(2, 2, 2);
-//		auto srt = s * r * t;
-//	}
-//	timer.printTime("DirectXMath = ", "ms");
-//}
+int main() {
+	Timer timer;
+
+	// 721mx
+	//for (auto i = 0; i < MAX_COUNT; ++i) {
+		auto s = Matrix4x4::scaling({ 2.0f, 2.0f, 2.0f });
+		auto r = Matrix4x4::rotationRollPitchYaw(100, 100, 100);
+		auto t = Matrix4x4::translation({ 2.0f, 2.0f, 2.0f });
+		// auto asrt = s * r * t;
+
+		// cout << 1 << endl;
+		auto sr = srt(s, r, t);
+
+	//}
+
+	// timer.printTime("gnLIbMath = ", "ms");
+	// 
+	// // 1652mx
+	// for (auto i = 0; i < MAX_COUNT; ++i) {
+	// 	auto r = DirectX::XMMatrixRotationRollPitchYaw(100, 100, 100);
+	// 	auto s = DirectX::XMMatrixScaling(2, 2, 2);
+	// 	auto t = DirectX::XMMatrixTranslation(2, 2, 2);
+	// 	auto srt = s * r * t;
+	// }
+	// timer.printTime("DirectXMath = ", "ms");
+}

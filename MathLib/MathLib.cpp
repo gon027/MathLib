@@ -317,74 +317,74 @@ void print_XMMatrix(const DirectX::XMMATRIX& _m) {
     cout << "[ x = " << w[0] << ", y = " << w[1] << ", z = " << w[2] << ", w = " << w[3] << " ]" << endl;
 }
 
-int main()
-{
-    // Test_ClassSize();
-
-    // Test_Matrix4x4_Transpose();
-    // Test_Matrix4x4_Inverse();
-    // Test_Matrix4x4_Operater();
-
-    // Test_Matrix4x3_Constractor();
-    // Test_Matrix4x3_Transpose();
-    // Test_Matrix4x3_Operater();
-    // Test_Matrix4x3_Determinant();
-    // Test_Matrix4x3_Inverse();
-
-    // Test_Quaternion();
-    // Test_Quaternion_Normalized();
-    // Test_Quaternion_Dot();
-    // Test_Quaternion_Inverse();
-
-    // Test_Matrix4x4_Rotation();
-
-    using namespace DirectX;
-
-    // auto xlh = XMMatrixLookAtLH(
-    //     { 10, 20, -5 },
-    //     { 0, 0, 0 },
-    //     { 0, 1, 0 }
-    // );
-    // print_XMMatrix(xlh);
-    // // xlh.r[0].m128_f32[0];
-    // 
-    // auto lh = Matrix4x4::lookAtLH(
-    //     { 10, 20, -5 },
-    //     { 0, 0, 0 },
-    //     { 0, 1, 0 }
-    // );
-    // cout << lh.toString() << endl;
-
-    // auto xog = XMMatrixOrthographicLH(
-    //     640, 480, 0.5f, 100.0f
-    // );
-    // print_XMMatrix(xog);
-    // 
-    // auto og = Matrix4x4::orthographicLH(
-    //     640, 480, 0.5f, 100.0f
-    // );
-    // cout << og.toString() << endl;
-
-    // auto fovAngle = (45.0f * 3.141592f / 180.0f);
-    // auto aspect = (640.0f / 480.0f);
-    // 
-    // auto xper = XMMatrixPerspectiveFovLH(
-    //     fovAngle, aspect, 0.5f, 100.0f
-    // );
-    // print_XMMatrix(xper);
-    // 
-    // auto per = Matrix4x4::perspectiveFovLH(
-    //     fovAngle, aspect, 0.5f, 100.0f
-    // );
-    // cout << per.toString() << endl;
-
-    // auto xperlh = XMMatrixPerspectiveLH(
-    //     640, 480, 0.5f, 100.0f
-    // );
-    // print_XMMatrix(xperlh);
-    // 
-    // auto perlh = Matrix4x4::perspectiveLH(
-    //     640, 480, 0.5f, 100.0f
-    // );
-    // cout << perlh.toString() << endl;
-}
+//int main()
+//{
+//    // Test_ClassSize();
+//
+//    // Test_Matrix4x4_Transpose();
+//    // Test_Matrix4x4_Inverse();
+//    // Test_Matrix4x4_Operater();
+//
+//    // Test_Matrix4x3_Constractor();
+//    // Test_Matrix4x3_Transpose();
+//    // Test_Matrix4x3_Operater();
+//    // Test_Matrix4x3_Determinant();
+//    // Test_Matrix4x3_Inverse();
+//
+//    // Test_Quaternion();
+//    // Test_Quaternion_Normalized();
+//    // Test_Quaternion_Dot();
+//    // Test_Quaternion_Inverse();
+//
+//    // Test_Matrix4x4_Rotation();
+//
+//    using namespace DirectX;
+//
+//    // auto xlh = XMMatrixLookAtLH(
+//    //     { 10, 20, -5 },
+//    //     { 0, 0, 0 },
+//    //     { 0, 1, 0 }
+//    // );
+//    // print_XMMatrix(xlh);
+//    // // xlh.r[0].m128_f32[0];
+//    // 
+//    // auto lh = Matrix4x4::lookAtLH(
+//    //     { 10, 20, -5 },
+//    //     { 0, 0, 0 },
+//    //     { 0, 1, 0 }
+//    // );
+//    // cout << lh.toString() << endl;
+//
+//    // auto xog = XMMatrixOrthographicLH(
+//    //     640, 480, 0.5f, 100.0f
+//    // );
+//    // print_XMMatrix(xog);
+//    // 
+//    // auto og = Matrix4x4::orthographicLH(
+//    //     640, 480, 0.5f, 100.0f
+//    // );
+//    // cout << og.toString() << endl;
+//
+//    // auto fovAngle = (45.0f * 3.141592f / 180.0f);
+//    // auto aspect = (640.0f / 480.0f);
+//    // 
+//    // auto xper = XMMatrixPerspectiveFovLH(
+//    //     fovAngle, aspect, 0.5f, 100.0f
+//    // );
+//    // print_XMMatrix(xper);
+//    // 
+//    // auto per = Matrix4x4::perspectiveFovLH(
+//    //     fovAngle, aspect, 0.5f, 100.0f
+//    // );
+//    // cout << per.toString() << endl;
+//
+//    // auto xperlh = XMMatrixPerspectiveLH(
+//    //     640, 480, 0.5f, 100.0f
+//    // );
+//    // print_XMMatrix(xperlh);
+//    // 
+//    // auto perlh = Matrix4x4::perspectiveLH(
+//    //     640, 480, 0.5f, 100.0f
+//    // );
+//    // cout << perlh.toString() << endl;
+//}

@@ -2,7 +2,6 @@
 #include "../../include/Vector/Vector3.h"
 #include <string>
 #include <cmath>
-#include <iostream>
 
 #define tostr(value) std::to_string(value)
 
@@ -209,7 +208,6 @@ namespace gnLib {
         , m20(0.0f), m21(0.0f), m22(0.0f), m23(0.0f)
         , m30(0.0f), m31(0.0f), m32(0.0f), m33(0.0f)
     {
-        //std::cout << "Matrix4x4::Constractor()" << std::endl;
     }
 
     Matrix4x4::Matrix4x4(const Matrix4x4& _m)
@@ -218,8 +216,6 @@ namespace gnLib {
         , m20(_m.m20), m21(_m.m21), m22(_m.m22), m23(_m.m23)
         , m30(_m.m30), m31(_m.m31), m32(_m.m32), m33(_m.m33)
     {
-        //std::cout << "Matrix4x4::Constractor(_m)" << std::endl;
-
     }
 
     Matrix4x4::Matrix4x4(
@@ -233,8 +229,6 @@ namespace gnLib {
         , m20(_m20), m21(_m21), m22(_m22), m23(_m23)
         , m30(_m30), m31(_m31), m32(_m32), m33(_m33)
     {
-        //std::cout << "Matrix4x4::Constractor(_m11 - _m33)" << std::endl;
-
     }
 
     Matrix4x4::Matrix4x4(const float _m[16])
@@ -243,8 +237,6 @@ namespace gnLib {
         , m20(_m[8]), m21(_m[9]), m22(_m[10]), m23(_m[11])
         , m30(_m[12]), m31(_m[13]), m32(_m[14]), m33(_m[15])
     {
-        //std::cout << "Matrix4x4::Constractor(_m[16])" << std::endl;
-
     }
     
     float Matrix4x4::determinant()
