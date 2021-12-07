@@ -30,8 +30,8 @@ namespace gnLib {
 		Vector3(float _xyz);
 		~Vector3() = default;
 
-		void setPos(float _x, float _y, float _z);
-		void setPos(const Vector3& _v);
+		void set(float _x, float _y, float _z);
+		void set(const Vector3& _v);
 
 		const float length() const;
 
