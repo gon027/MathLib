@@ -26,12 +26,12 @@ namespace gnLib {
 		Vector2(float _xy);
 		~Vector2() = default;
 
-		void setPos(float _x, float _y);
-		void setPos(const Vector2& _v);
+		void set(float _x, float _y);
+		void set(const Vector2& _v);
 
-		const float magnitude() const;
+		const float length() const;
 
-		const float sqrMagnitude() const;
+		const float sqrtLength() const;
 
 		const Vector2 normalized() const;
 

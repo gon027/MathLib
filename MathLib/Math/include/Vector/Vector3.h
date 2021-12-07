@@ -33,9 +33,9 @@ namespace gnLib {
 		void setPos(float _x, float _y, float _z);
 		void setPos(const Vector3& _v);
 
-		const float magnitude() const;
+		const float length() const;
 
-		const float sqrMagnitude() const;
+		const float sqrtLength() const;
 
 		const Vector3 normalized() const;
 

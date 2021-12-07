@@ -31,34 +31,34 @@ namespace gnLib {
 		, y(_xy)
 	{ }
 
-	void Vector2::setPos(float _x, float _y)
+	void Vector2::set(float _x, float _y)
 	{
 		x = _x;
 		y = _y;
 	}
 
-	void Vector2::setPos(const Vector2 & _v)
+	void Vector2::set(const Vector2 & _v)
 	{
 		x = _v.x;
 		y = _v.y;
 	}
 
-	const float Vector2::magnitude() const
+	const float Vector2::length() const
+	{
+		return std::sqrt(sqrtLength());
+	}
+
+	const float Vector2::sqrtLength() const
 	{
 		return x * x + y * y;
 	}
 
-	const float Vector2::sqrMagnitude() const
-	{
-		return std::sqrt(magnitude());
-	}
-
 	const Vector2 Vector2::normalized() const
 	{
-		auto length = sqrMagnitude();
+		auto len = length();
 
-		if (length != 0) {
-			return { x / length, y / length };
+		if (len != 0) {
+			return { x / len, y / len };
 		}
 		else {
 			return *this;

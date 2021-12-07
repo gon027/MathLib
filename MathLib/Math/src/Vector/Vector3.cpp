@@ -55,20 +55,20 @@ namespace gnLib {
 		setPos(_v.x, _v.y, _v.z);
 	}
 
-	const float Vector3::magnitude() const
+	const float Vector3::length() const
+	{
+		return sqrtf(sqrtLength());
+	}
+
+	const float Vector3::sqrtLength() const
 	{
 		return x * x + y * y + z * z;
 	}
 
-	const float Vector3::sqrMagnitude() const
-	{
-		return sqrtf(magnitude());
-	}
-
 	const Vector3 Vector3::normalized() const
 	{
-		auto length = sqrMagnitude();
-		auto oneOverLen = 1.0f / length;
+		auto len = length();
+		auto oneOverLen = 1.0f / len;
 
 		return {
 			x * oneOverLen,
