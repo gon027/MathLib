@@ -34,26 +34,26 @@ float toRadian(float _angle) {
 int main() {
 	using namespace gnLib;
 
-	Timer t{};
+	// Timer t{};
+	// 
+	// auto r = toRadian(45.0f);
+	// 
+	// for (size_t i = 0; i < MAX_COUNT; ++i) {
+	// 	auto q = Quaternion::rotationAxis({ 1, 0, 0 }, r);
+	// 	auto m = Quaternion::toMatrix(q);
+	// 	// cout << m.toString() << endl;
+	// }
+	// t.printTime("Quaternion = ", "ms");
+	// 
+	// for (size_t i = 0; i < MAX_COUNT; ++i) {
+	// 	auto m = Matrix4x4::rotationRollPitchYaw(r, 0, 0);
+	// }
+	// t.printTime("Matrix = ", "ms");
 
-	auto r = toRadian(45.0f);
+	auto q = Quaternion::rotationAxis({ 1, 0, 0 }, toRadian(45.f));
 
-	for (size_t i = 0; i < MAX_COUNT; ++i) {
-		auto q = Quaternion::rotationAxis({ 1, 0, 0 }, r);
-		auto m = Quaternion::toMatrix(q);
-		// cout << m.toString() << endl;
-	}
-	t.printTime("Quaternion = ", "ms");
+	auto m1 = Quaternion::toMatrix(q);
+	cout << m1.toString() << endl;
 
-	for (size_t i = 0; i < MAX_COUNT; ++i) {
-		auto m = Matrix4x4::rotationRollPitchYaw(r, 0, 0);
-	}
-	t.printTime("Matrix = ", "ms");
-
-	// auto rmx = Matrix4x4::rotationX(r);
-	// auto rmy = Matrix4x4::rotationY(r);
-	// auto rmz = Matrix4x4::rotationZ(r);
-	// cout << rmx.toString() << endl;
-	// cout << rmy.toString() << endl;
-	// cout << rmz.toString() << endl;
+	cout << q.toMatrix().toString() << endl;
 }

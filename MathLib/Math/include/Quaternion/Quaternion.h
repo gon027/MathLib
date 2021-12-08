@@ -41,6 +41,9 @@ namespace gnLib {
 
 		Quaternion inverse();
 
+		// ‰ñ“]s—ñ‚É•ÏŠ·
+		Matrix4x4 toMatrix();
+
 		const float dot(const Quaternion& _q);
 
 		const Quaternion operator* (const Quaternion& _q) const;

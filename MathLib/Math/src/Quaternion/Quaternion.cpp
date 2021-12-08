@@ -132,6 +132,28 @@ namespace gnLib {
         };
     }
 
+    Matrix4x4 Quaternion::toMatrix()
+    {
+        return {
+            1.0f - 2.0f * y * y - 2.0f * z * z,
+            2.0f * x * y + 2.0f * w * z,
+            2.0f * x * z - 2.0f * w * y,
+            0,
+            2.0f * x * y - 2.0f * w * z,
+            1.0f - 2.0f * x * x - 2.0f * z * z,
+            2.0f * y * z + 2.0f * w * x,
+            0,
+            2.0f * x * z + 2.0f * w * y,
+            2.0f * y * z - 2.0f * w * x,
+            1.0f - 2.0f * x * x - 2.0f * y * y,
+            0,
+            0,
+            0,
+            0,
+            1,
+        };
+    }
+
     const float Quaternion::dot(const Quaternion& _q)
     {
         return w * _q.w + x * _q.x + y * _q.y + z * _q.z;
