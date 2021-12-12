@@ -53,28 +53,6 @@ namespace gnLib {
         return Quaternion::identity();
     }
 
-    Matrix4x4 Quaternion::toMatrix(const Quaternion& _q)
-    {
-        return {
-            1.0f - 2.0f * _q.y * _q.y - 2.0f * _q.z * _q.z,
-            2.0f * _q.x * _q.y + 2.0f * _q.w * _q.z,
-            2.0f * _q.x * _q.z - 2.0f * _q.w * _q.y,
-            0,
-            2.0f * _q.x * _q.y - 2.0f * _q.w * _q.z,
-            1.0f - 2.0f * _q.x * _q.x - 2.0f * _q.z * _q.z,
-            2.0f * _q.y * _q.z + 2.0f * _q.w * _q.x,
-            0,
-            2.0f * _q.x * _q.z + 2.0f * _q.w * _q.y,
-            2.0f * _q.y * _q.z - 2.0f * _q.w * _q.x,
-            1.0f - 2.0f * _q.x * _q.x - 2.0f * _q.y * _q.y,
-            0,
-            0,
-            0,
-            0,
-            1,
-        };
-    }
-
     Quaternion::Quaternion(float _x, float _y, float _z, float _w)
         : x(_x)
         , y(_y)
@@ -167,6 +145,12 @@ namespace gnLib {
         const float rz{ w * _q.z + _q.w * z + x * _q.y - y * _q.x };
 
         return { rx, ry, rz, rw };
+    }
+
+    const Quaternion Quaternion::operator*=(const Quaternion& _q)
+    {
+        *this = *this * _q;
+        return *this;
     }
 
     const bool Quaternion::operator==(const Quaternion& _q) const

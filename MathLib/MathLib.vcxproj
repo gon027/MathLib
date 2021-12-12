@@ -27,13 +27,13 @@
     <ClInclude Include="Math\include\Vector\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Test\main.cpp" />
-    <ClCompile Include="Test\MathLib.cpp" />
     <ClCompile Include="Math\src\Matrix\Matrix4x3.cpp" />
     <ClCompile Include="Math\src\Matrix\Matrix4x4.cpp" />
     <ClCompile Include="Math\src\Quaternion\Quaternion.cpp" />
     <ClCompile Include="Math\src\Vector\Vector2.cpp" />
     <ClCompile Include="Math\src\Vector\Vector3.cpp" />
+    <ClCompile Include="Test\main.cpp" />
+    <ClCompile Include="Test\MathLib.cpp" />
     <ClCompile Include="Test\Test_Quaternion.cpp" />
     <ClCompile Include="Test\Test_Vector2.cpp" />
     <ClCompile Include="Test\Test_Vector3.cpp" />
@@ -47,7 +47,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -60,7 +60,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>

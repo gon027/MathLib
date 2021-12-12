@@ -31,6 +31,7 @@ float toRadian(float _angle) {
 	return _angle * 3.141592f / 180.0f;
 }
 
+/*
 int main() {
 	using namespace gnLib;
 
@@ -52,8 +53,9 @@ int main() {
 
 	auto q = Quaternion::rotationAxis({ 1, 0, 0 }, toRadian(45.f));
 
-	auto m1 = Quaternion::toMatrix(q);
-	cout << m1.toString() << endl;
+	// auto m1 = Quaternion::toMatrix(q);
+	// cout << m1.toString() << endl;
 
 	cout << q.toMatrix().toString() << endl;
 }
+*/

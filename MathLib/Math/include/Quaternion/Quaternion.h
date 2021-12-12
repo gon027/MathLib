@@ -24,9 +24,6 @@ namespace gnLib {
 
 		// static Quaternion euler(float _x, float _y, float _z);
 
-		// ‰ñ“]s—ñ‚É•ÏŠ·
-		static Matrix4x4 toMatrix(const Quaternion& _q);
-
 	public:
 		Quaternion(float _x, float _y, float _z, float _w);
 		~Quaternion() = default;
@@ -47,6 +44,8 @@ namespace gnLib {
 		const float dot(const Quaternion& _q);
 
 		const Quaternion operator* (const Quaternion& _q) const;
+
+		const Quaternion operator*= (const Quaternion& _q);
 
 		const bool operator== (const Quaternion& _q) const;
 
