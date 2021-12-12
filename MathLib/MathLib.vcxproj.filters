@@ -22,6 +22,9 @@
     <Filter Include="Quaternion">
       <UniqueIdentifier>{55056fd3-94d2-4d18-b7a2-5c723e16b02f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{64d0846a-56e7-407e-8877-070dd0261436}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\include\Matrix\Matrix4x3.h">
@@ -58,21 +61,6 @@
     </ClCompile>
     <ClCompile Include="Math\src\Matrix\Matrix4x3.cpp">
       <Filter>Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\MathLib.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\Test_Quaternion.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\Test_Vector2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\Test_Vector3.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

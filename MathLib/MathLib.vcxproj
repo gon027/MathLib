@@ -32,11 +32,6 @@
     <ClCompile Include="Math\src\Quaternion\Quaternion.cpp" />
     <ClCompile Include="Math\src\Vector\Vector2.cpp" />
     <ClCompile Include="Math\src\Vector\Vector3.cpp" />
-    <ClCompile Include="Test\main.cpp" />
-    <ClCompile Include="Test\MathLib.cpp" />
-    <ClCompile Include="Test\Test_Quaternion.cpp" />
-    <ClCompile Include="Test\Test_Vector2.cpp" />
-    <ClCompile Include="Test\Test_Vector3.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
