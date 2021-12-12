@@ -5,11 +5,11 @@
 
 #define tostr(value) std::to_string(value)
 
-#include <iostream>
-
 namespace gnLib {
 
     namespace {
+
+        constexpr float EPS = 0.0001f;
 
         void SinCos(float& _sin, float& _cos, float _angle) {
             _sin = std::sinf(_angle);
@@ -27,13 +27,11 @@ namespace gnLib {
     {
         float s, c;
         SinCos(s, c, _angle * 0.5f);
-        // s *= 0.5f;
-        // c *= 0.5f;
 
-        float x = _axis.x * s;
-        float y = _axis.y * s;
-        float z = _axis.z * s;
-        float w = c;
+        const float x = _axis.x * s;
+        const float y = _axis.y * s;
+        const float z = _axis.z * s;
+        const float w = c;
 
         return { x, y, z, w };
     }
@@ -73,14 +71,14 @@ namespace gnLib {
 
     Quaternion Quaternion::normalized()
     {
-        auto len = length();
+        const auto len = length();
 
         // ’l‚ª0‚ÌŽž
-        if (len < 0.0001f) {
+        if (len < EPS) {
             return Quaternion::identity();
         }
 
-        auto mg = 1.0f / len;
+        const auto mg = 1.0f / len;
         return {
             x * mg, y * mg, z * mg, w * mg
         };
@@ -93,15 +91,14 @@ namespace gnLib {
 
     Quaternion Quaternion::inverse()
     {
-        auto len = sqrtLength();
+        const auto len = sqrtLength();
 
         // 0ˆ—
-        if (len < 0.00001f) {
+        if (len < EPS) {
             return Quaternion::identity();
         }
 
-        auto oneOverLen = 1.0f / len;
-
+        const auto oneOverLen = 1.0f / len;
         return {
             -x * oneOverLen,
             -y * oneOverLen,
