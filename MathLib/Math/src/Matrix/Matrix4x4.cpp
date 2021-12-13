@@ -142,14 +142,6 @@ namespace gnLib {
         };
     }
 
-    /*
-    Matrix4x4 Matrix4x4::lookAtRH(const Vector3& _eye, const Vector3& _focus, const Vector3& _up)
-    {
-        return {
-        };
-    }
-    */
-
     Matrix4x4 Matrix4x4::orthographicLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
     {
         const auto zDiff = _farZ - _nearZ;
@@ -161,13 +153,6 @@ namespace gnLib {
             0.0f, 0.0f, -_nearZ / zDiff, 1.0f,
         };
     }
-
-    /*
-    Matrix4x4 Matrix4x4::orthographicRH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
-    {
-        return Matrix4x4();
-    }
-    */
 
     Matrix4x4 Matrix4x4::perspectiveFovLH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ)
     {
@@ -195,12 +180,6 @@ namespace gnLib {
         };
     }
 
-    /*
-    Matrix4x4 Matrix4x4::perspectiveFovRH(float _fovAngleY, float _aspectRatio, float _nearZ, float _farZ)
-    {
-        return Matrix4x4();
-    }
-    */
 
     Matrix4x4::Matrix4x4()
         : m00(0.0f), m01(0.0f), m02(0.0f), m03(0.0f)
@@ -241,10 +220,10 @@ namespace gnLib {
     
     float Matrix4x4::determinant()
     {
-        float a0{ m00 * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
-        float a1{ m10 * determinant3x3(m01, m02, m03, m21, m22, m23, m31, m32, m33) };
-        float a2{ m20 * determinant3x3(m01, m02, m03, m11, m12, m13, m31, m32, m33) };
-        float a3{ m30 * determinant3x3(m01, m02, m03, m11, m12, m13, m21, m22, m23) };
+        const float a0{ m00 * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
+        const float a1{ m10 * determinant3x3(m01, m02, m03, m21, m22, m23, m31, m32, m33) };
+        const float a2{ m20 * determinant3x3(m01, m02, m03, m11, m12, m13, m31, m32, m33) };
+        const float a3{ m30 * determinant3x3(m01, m02, m03, m11, m12, m13, m21, m22, m23) };
 
         return a0 - a1 + a2 - a3;
     }
