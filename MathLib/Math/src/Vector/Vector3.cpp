@@ -68,8 +68,11 @@ namespace gnLib {
 	const Vector3 Vector3::normalized() const
 	{
 		auto len = length();
-		auto oneOverLen = 1.0f / len;
+		if (len <= 0.001f) {
+			return Vector3::Zero;
+		}
 
+		auto oneOverLen = 1.0f / len;
 		return {
 			x * oneOverLen,
 			y * oneOverLen,

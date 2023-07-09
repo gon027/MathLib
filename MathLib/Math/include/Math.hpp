@@ -23,4 +23,8 @@ namespace gnLib {
 		return _radian * 180.0f / pi;
 	}
 
+	inline float clamp(float _val, float _min, float _max) {
+		return (std:: min)(_max, (std::max)(_min, _val));
+	};
+
 }
