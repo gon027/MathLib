@@ -382,10 +382,10 @@ namespace gnLib {
     const std::string Matrix4x4::toString()
     {
         return {
-            "[ m00 = " + tostr(m00) + ", m01 = " + tostr(m01) + ", m02 = " + tostr(m02) + ", m03 =  " + tostr(m03) + " ]\n"
-            "[ m10 = " + tostr(m10) + ", m11 = " + tostr(m11) + ", m12 = " + tostr(m12) + ", m13 =  " + tostr(m13) + " ]\n"
-            "[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + ", m23 =  " + tostr(m23) + " ]\n"
-            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 =  " + tostr(m33) + " ]\n"
+            "[ m00 = " + tostr(m00) + ", m01 = " + tostr(m01) + ", m02 = " + tostr(m02) + ", m03 = " + tostr(m03) + " ]\n"
+            "[ m10 = " + tostr(m10) + ", m11 = " + tostr(m11) + ", m12 = " + tostr(m12) + ", m13 = " + tostr(m13) + " ]\n"
+            "[ m20 = " + tostr(m20) + ", m21 = " + tostr(m21) + ", m22 = " + tostr(m22) + ", m23 = " + tostr(m23) + " ]\n"
+            "[ m30 = " + tostr(m30) + ", m31 = " + tostr(m31) + ", m32 = " + tostr(m32) + ", m33 = " + tostr(m33) + " ]\n"
         };
     }
 

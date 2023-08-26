@@ -62,5 +62,8 @@
     <ClCompile Include="Math\src\Matrix\Matrix4x3.cpp">
       <Filter>Matrix</Filter>
     </ClCompile>
+    <ClCompile Include="Test_Matrix_Inverse.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
