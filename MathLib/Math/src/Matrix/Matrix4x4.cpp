@@ -180,6 +180,20 @@ namespace gnLib {
         };
     }
 
+    Vector3 Matrix4x4::transformCoord(const Vector3& _v, const Matrix4x4& _m)
+    {
+        const float rx{ _v.x * _m.m00 + _v.y * _m.m10 + _v.z * _m.m20 + _m.m30 };
+        const float ry{ _v.x * _m.m01 + _v.y * _m.m11 + _v.z * _m.m21 + _m.m31 };
+        const float rz{ _v.x * _m.m02 + _v.y * _m.m12 + _v.z * _m.m22 + _m.m32 };
+        const float w{ _v.x * _m.m03 + _v.y * _m.m13 + _v.z * _m.m23 + _m.m33 };
+        const float rw{ 1.0f };
+
+        return {
+            rx * rw,
+            ry * rw,
+            rz * rw,
+        };
+    }
 
     Matrix4x4::Matrix4x4()
         : m00(0.0f), m01(0.0f), m02(0.0f), m03(0.0f)

@@ -135,6 +135,14 @@ namespace gnLib {
 		/// <returns> “§‹“Š‰es—ñ </returns>
 		static Matrix4x4 perspectiveLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ);
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="_v"></param>
+		/// <param name="_m"></param>
+		/// <returns></returns>
+		static Vector3 transformCoord(const Vector3& _v, const Matrix4x4& _m);
+
 	public:
 		Matrix4x4();
 		Matrix4x4(const Matrix4x4& _m);

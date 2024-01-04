@@ -1,5 +1,6 @@
 #include "../../include/Vector/Vector2.h"
 #include "../../include/Vector/Vector3.h"
+#include "../../include/Matrix/Matrix4x4.h"
 #include <cmath>
 
 namespace gnLib {
@@ -127,6 +128,11 @@ namespace gnLib {
 	const Vector3 Vector3::operator*(const Vector3 & _v) const
 	{
 		return { x * _v.x, y * _v.y, z * _v.z };
+	}
+
+	const Vector3 Vector3::operator*(const Matrix4x4& _m) const
+	{
+		return Matrix4x4::transformCoord(*this, _m);
 	}
 
 	const Vector3 Vector3::operator/(const Vector3 & _v) const

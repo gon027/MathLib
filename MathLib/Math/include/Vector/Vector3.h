@@ -5,6 +5,7 @@
 
 namespace gnLib {
 	class Vector2;
+	class Matrix4x4;
 
 	// 3次元ベクトルクラス
 	class Vector3 {
@@ -60,6 +61,8 @@ namespace gnLib {
 		const Vector3 operator-(const Vector3& _v) const;
 
 		const Vector3 operator*(const Vector3& _v) const;
+
+		const Vector3 operator*(const Matrix4x4& _m) const;
 
 		const Vector3 operator/(const Vector3& _v) const;
 
