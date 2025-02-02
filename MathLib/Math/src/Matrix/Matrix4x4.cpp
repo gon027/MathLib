@@ -145,12 +145,18 @@ namespace gnLib {
     Matrix4x4 Matrix4x4::orthographicLH(float _viewWidth, float _viewHeight, float _nearZ, float _farZ)
     {
         const auto zDiff = _farZ - _nearZ;
+       /* return {
+            2.0f / _viewWidth, 0.0f, 0.0f, 0.0f,
+            0.0f, -2.0f / _viewHeight, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f / zDiff, 0.0f,
+            0.0f, 0.0f, -_nearZ / zDiff, 1.0f,
+        };*/
 
         return {
             2.0f / _viewWidth, 0.0f, 0.0f, 0.0f,
-            0.0f, 2.0f / _viewHeight, 0.0f, 0.0f,
-            0.0f, 0.0f, 1.0f / zDiff, 0.0f,
-            0.0f, 0.0f, -_nearZ / zDiff, 1.0f,
+            0.0f, -2.0f / _viewHeight, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f,
         };
     }
 
