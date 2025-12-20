@@ -1,4 +1,4 @@
-#include "../../include/Matrix/Matrix4x4.h"
+ï»¿#include "../../include/Matrix/Matrix4x4.h"
 #include "../../include/Vector/Vector3.h"
 #include <string>
 #include <cmath>
@@ -9,18 +9,18 @@ namespace gnLib {
 
     namespace {
 
-        // 3x3s—ñ‚Ìs—ñ®
+        // 3x3è¡Œåˆ—ã®è¡Œåˆ—å¼
         const float determinant3x3(
             float _m00, float _m01, float _m02,
             float _m10, float _m11, float _m12,
             float _m20, float _m21, float _m22) 
         {
-            // ‘ÎŠp
+            // å¯¾è§’
             const float a0{ _m00 * _m11 * _m22 };
             const float a1{ _m01 * _m12 * _m20 };
             const float a2{ _m02 * _m10 * _m21 };
 
-            // ”ñ‘ÎŠp
+            // éå¯¾è§’
             const float b0{ _m02 * _m11 * _m20 };
             const float b1{ _m01 * _m10 * _m22 };
             const float b2{ _m00 * _m12 * _m21 };
@@ -192,7 +192,7 @@ namespace gnLib {
         const float ry{ _v.x * _m.m01 + _v.y * _m.m11 + _v.z * _m.m21 + _m.m31 };
         const float rz{ _v.x * _m.m02 + _v.y * _m.m12 + _v.z * _m.m22 + _m.m32 };
         const float w{ _v.x * _m.m03 + _v.y * _m.m13 + _v.z * _m.m23 + _m.m33 };
-        const float rw{ 1.0f };
+        const float rw{ 1.0f / w };
 
         return {
             rx * rw,
@@ -252,14 +252,14 @@ namespace gnLib {
     {
         const float det = determinant();
 
-        // s—ñ®‚ª0‚ÌA‹ts—ñ‚Å‚Í‚È‚­Œ³‚Ìs—ñ‚ğ•Ô‚·
+        // è¡Œåˆ—å¼ãŒ0ã®æ™‚ã€é€†è¡Œåˆ—ã§ã¯ãªãå…ƒã®è¡Œåˆ—ã‚’è¿”ã™
         if (std::abs(det) < 0.00001f) {
             return;
         }
 
         const float inv = 1.0f / det;
 
-        // Še—]‰Cq‚ğŒvZ
+        // å„ä½™éŸ»å­ã‚’è¨ˆç®—
         const float n00{ inv * determinant3x3(m11, m12, m13, m21, m22, m23, m31, m32, m33) };
         const float n10{ -inv * determinant3x3(m10, m12, m13, m20, m22, m23, m30, m32, m33) };
         const float n20{ inv * determinant3x3(m10, m11, m13, m20, m21, m23, m30, m31, m33) };

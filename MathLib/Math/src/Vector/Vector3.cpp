@@ -1,4 +1,4 @@
-#include "../../include/Vector/Vector2.h"
+﻿#include "../../include/Vector/Vector2.h"
 #include "../../include/Vector/Vector3.h"
 #include "../../include/Matrix/Matrix4x4.h"
 #include <cmath>
@@ -198,6 +198,11 @@ namespace gnLib {
 			_scaler * _v.y,
 			_scaler * _v.z,
 		};
+	}
+
+	const Vector3 operator*(const Matrix4x4& _mat, const Vector3& _v)
+	{
+		return Matrix4x4::transformCoord(_v, _mat);
 	}
 
 }

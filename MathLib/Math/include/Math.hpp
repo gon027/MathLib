@@ -1,14 +1,15 @@
-#pragma once
+ï»¿#pragma once
 
-// ƒxƒNƒgƒ‹
+// ãƒ™ã‚¯ãƒˆãƒ«
 #include "Vector/Vector2.h"
 #include "Vector/Vector3.h"
+#include "Vector/Vector4.h"
 
-// s—ñ
+// è¡Œåˆ—
 // #include "Matrix/Matrix4x3.h"
 #include "Matrix/Matrix4x4.h"
 
-// ƒNƒH[ƒ^ƒjƒIƒ“
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
 #include "Quaternion/Quaternion.h"
 
 namespace gnLib {
