@@ -1,5 +1,4 @@
-﻿#ifndef VECTOR3_H
-#define VECTOR3_H
+﻿#pragma once
 
 #include <string>
 
@@ -88,5 +87,3 @@ namespace gnLib {
 	const Vector3 operator*(const Matrix4x4& _mat, const Vector3& _v);
 
 }
-
-#endif // !VECTOR3_H

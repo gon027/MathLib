@@ -1,5 +1,4 @@
-#ifndef VECTOR2_H
-#define VECTOR2_H
+#pragma once
 
 #include <string>
 
@@ -76,6 +75,3 @@ namespace gnLib {
 
 	const Vector2 operator*(float _scaler, const Vector2& _v);
 }
-
-
-#endif // !VECTOR2_H

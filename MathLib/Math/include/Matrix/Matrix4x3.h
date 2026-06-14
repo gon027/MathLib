@@ -1,5 +1,4 @@
-#ifndef MATRIX4X3_H
-#define MATRIX4X3_H
+#pragma once
 
 #include <string>
 
@@ -65,5 +64,3 @@ namespace gnLib {
 	};
 
 }
-
-#endif // !MATRIX4X3_H

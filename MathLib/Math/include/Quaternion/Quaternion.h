@@ -1,5 +1,4 @@
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#pragma once
 
 #include <string>
 
@@ -120,5 +119,3 @@ namespace gnLib {
 	};
 
 }
-
-#endif // !QUATERNION_H
